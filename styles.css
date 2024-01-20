@@ -7,7 +7,7 @@ body {
     background-image: url(https://i.pinimg.com/originals/24/ea/b9/24eab918636e06d10002430976e98d56.jpg);
     color: #383434;
     text-shadow: #797474;
-    column-count: inherit;
+    column-count:inherit;
     animation-direction: normal;
 }
 
