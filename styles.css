@@ -7,6 +7,8 @@ body {
     background-image: url(https://i.pinimg.com/originals/24/ea/b9/24eab918636e06d10002430976e98d56.jpg);
     color: #383434;
     text-shadow: #797474;
+    column-count: inherit;
+    animation-direction: normal;
 }
 
 /* Estilo para el encabezado del artículo */
@@ -18,6 +20,9 @@ article header {
     border: 4px solid  black;
     border-style:dotted;
     font-size:x-large;
+    text-align: center;
+    
+    
     
 }
 
@@ -28,9 +33,11 @@ h1, h2 {
 
 /* Fecha del artículo */
 article header time {
-    font-style: italic;
+    font-style: oblique;
     color: #000000;
     font-size: medium;
+    text-decoration:dotted;
+    text-indent: 5cm;
 }
 
 
@@ -68,14 +75,16 @@ form label {
     margin-bottom: 0.5em;
 }
 
-form input[type="text"],
-form input[type="email"],
+form input[type="text"]:hover,
+form input[type="email"]:hover,
 form textarea {
     width: 100%;
     padding: 0.5em;
     margin-bottom: 1em;
     border: 1px solid #681414;
     border-radius: 4px;
+    background-color: #dababa;
+    transition: background-color 1s;
     
 }
 
