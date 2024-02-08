@@ -1,0 +1,116 @@
+Ej 1: 
+
+Plate 
+
+Ej 2: 
+
+Bento 
+
+ 
+
+Ej3: 
+
+#fancy 
+
+ 
+
+Ej4: 
+
+Plate apple 
+
+ 
+
+Ej5: 
+
+#fancy pickle 
+
+ 
+
+Ej6: 
+
+.small 
+
+ 
+
+Ej7: 
+
+Orange.small 
+
+ej8:
+
+bento orange.small
+
+ej9:
+
+plate, bento
+
+ej10:
+*
+
+ej11:
+#fancy .small, plate pickle, plate apple
+
+ej12:
+
+plate + .small, plate + apple
+
+ej13:
+
+bento ~ pickle
+
+ej14:
+plate > apple
+
+ej 15:
+plate orange:first-child
+
+ej16:
+plate apple:only-child, plate pickle:only-child
+
+ej17:
+.small:last-child
+
+ejer18:
+plate:nth-child(3)
+
+ejer19:
+bento:nth-last-child(3)
+
+ejer20:
+apple:first-of-type
+
+ejer21:
+plate:nth-of-type(even)
+
+ej22:
+plate:nth-of-type(2n+3)
+
+ej23:
+plate .small:only-of-type
+
+ej24:
+apple:last-of-type,orange:last-of-type
+
+ej25:
+bento:empty
+
+ej26:
+apple:not(.small)
+
+ej27:
+apple[for="Ethan"],plate[for="Alice"],bento[for="Clara"] 
+
+ej28:
+plate[for="Sarah"],plate[for="Luke"] 
+
+ej29:
+bento[for="Vitaly"]
+
+ej30:
+plate[for="Sam"],bento[for="Sarah"]
+
+ej31:
+bento[for="Hayato"],plate[for="Minato"]
+
+ej32:
+bento[for="Robbie"],bento[for="Bobby"]
