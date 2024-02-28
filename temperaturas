@@ -31,16 +31,22 @@
     </style>
     <script>function cambio(origen){
         alert(origen.value);
+        let vgc,vgf,vgk;
         switch(origen.id){
             case "GC":
-                document.getElementById("GF").value=100;
-                document.getElementById("GK").value=200;
+                vgc=parseFloat(origen.value);
+                vgf=vgc*1.8+32;
+                vgk=vgc+273.15;
             case "GF":
-            document.getElementById("GC").value=100;
-                document.getElementById("GK").value=200;
+            
+                vgf=parseFloat(origen.value);
+                vgc=(vgf-32)/1.8;
+                vgk=vgc+273.15;
             case "GK":
-            document.getElementById("GF").value=100;
-                document.getElementById("GC").value=200;
+            
+                vgk=parsenFloat(origen.value);
+                vgc=vgk-273.15;
+                vgf=vgc*1.8+32
 
         }
 
