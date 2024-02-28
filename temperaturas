@@ -10,7 +10,7 @@
             width: 800px;
             height: 400px;
             border: 5px solid gold;
-            border-radius: 25px ;
+            border-radius: 25px ; 
             margin: 120px auto;
         }
         #uno p {
@@ -37,19 +37,31 @@
                 vgc=parseFloat(origen.value);
                 vgf=vgc*1.8+32;
                 vgk=vgc+273.15;
+                document.getElementById("GF").value=vgf;  
+                document.getElementById("GK").value=vgk;
+                break;
             case "GF":
             
                 vgf=parseFloat(origen.value);
                 vgc=(vgf-32)/1.8;
                 vgk=vgc+273.15;
+                document.getElementById("GC").value=vgc;
+                document.getElementById("GK").value=vgk;
+                break;
             case "GK":
             
                 vgk=parsenFloat(origen.value);
                 vgc=vgk-273.15;
                 vgf=vgc*1.8+32
+                document.getElementById("GC").value=vgc;
+                document.getElementById("GF").value=vgf;
+                break;
 
         }
-
+        /*
+        document.getElementById("GC").value=vgc;
+        document.getElementById("GF").value=vgf;
+        document.getElementById("GK").value=vgk;*/
 
     }
     </script>
