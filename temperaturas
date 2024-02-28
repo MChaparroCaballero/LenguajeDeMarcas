@@ -30,7 +30,20 @@
     }
     </style>
     <script>function cambio(origen){
-        alert(origen.id);
+        alert(origen.value);
+        switch(origen.id){
+            case "GC":
+                document.getElementById("GF").value=100;
+                document.getElementById("GK").value=200;
+            case "GF":
+            document.getElementById("GC").value=100;
+                document.getElementById("GK").value=200;
+            case "GK":
+            document.getElementById("GF").value=100;
+                document.getElementById("GC").value=200;
+
+        }
+
 
     }
     </script>
