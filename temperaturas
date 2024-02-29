@@ -30,11 +30,20 @@
     }
     </style>
     <script>
-        function cambiar(){
-            for(let i=50;i>50;i--){
-                let z=document.createElement("option")
+        function newcargar(destino){
+            for(var i=50;i>=-50;i--){
+                var z=document.createElement("option");
+                z.text=i.toString();
+                z.value=i.toString();
+                destino.appendChild(z);
             }
         }
+        function cargar(){
+            newcargar(document.getElementById("sgc"));
+            newcargar(document.getElementById("sgf"));
+            newcargar(document.getElementById("sgk"));
+        }
+
         function pulsado(origen,quien){
             alert(parseInt(quien.innerHTML));
             /*obtenemos del elemento por id por el origen osea GC el valor y le decimos que va a ser igual a lo que tiene + el literal que tiene nuestro de boton [el +1 o -1]*/
@@ -88,14 +97,19 @@
 <p style="text-align: center;"><label for="">Celsius&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 <input type="number" id="GC" value="0" onchange="cambio(this)">
 <button onclick="pulsado('GC',this)">+1</button><button onclick="pulsado('GC',this)">-1</button>
+<select id="sgc"></select>
 </p>
 <p style="text-align: center;"><label for="">Farenheit</label>
 <input type="number" id="GF" value="0"  onchange="cambio(this)">
-<button onclick="pulsado('GF',this)">+1</button><button onclick="pulsado('GF',this)">-1</button></p>
+<button onclick="pulsado('GF',this)">+1</button><button onclick="pulsado('GF',this)">-1</button>
+<select id="sgf"></select>
+</p>
 
 <p style="text-align: center;"><label for="">Kelvin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
     <input type="number" id="GK" value="0"  onchange="cambio(this)">
-    <button onclick="pulsado('GK',this)">+1</button><button onclick="pulsado('GK',this)">-1</button></p>
+    <button onclick="pulsado('GK',this)">+1</button><button onclick="pulsado('GK',this)">-1</button>
+    <select id="sgk"></select>
+</p>
    
 
     </div>
