@@ -30,6 +30,11 @@
     }
     </style>
     <script>
+        function cambiar(){
+            for(let i=50;i>50;i--){
+                let z=document.createElement("option")
+            }
+        }
         function pulsado(origen,quien){
             alert(parseInt(quien.innerHTML));
             /*obtenemos del elemento por id por el origen osea GC el valor y le decimos que va a ser igual a lo que tiene + el literal que tiene nuestro de boton [el +1 o -1]*/
@@ -78,7 +83,7 @@
     }
     </script>
 </head>
-<body>
+<body onload="cargar()">
     <div id="uno">
 <p style="text-align: center;"><label for="">Celsius&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 <input type="number" id="GC" value="0" onchange="cambio(this)">
