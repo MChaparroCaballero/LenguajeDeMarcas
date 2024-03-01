@@ -28,6 +28,17 @@
     #uno p input{
         text-align: right;
     }
+    #dos p{
+        border: 5px solid blue;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: dashed;
+        padding: 15px 15px 15px 15px;
+        background-color: red;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 100px;
+    }
     </style>
     <script>
         function newcargar(destino){
@@ -91,6 +102,7 @@
 
     }
     </script>
+    
 </head>
 <body onload="cargar()">
     <div id="uno">
@@ -113,6 +125,11 @@
    
 
     </div>
+
+    <div id="dos"><title>2</title>
+    <p>
+        hola hola hola
+    </p> </div>
 
 </body>
 </html>
