@@ -9,9 +9,10 @@
         #uno {
             width: 800px;
             height: 400px;
-            border: 5px solid gold;
-            border-radius: 25px ; 
+            border: 25px ridge gold;
+            border-radius: 50px ; 
             margin: 120px auto;
+            
         }
         #uno p {
             margin-top: 40px;
