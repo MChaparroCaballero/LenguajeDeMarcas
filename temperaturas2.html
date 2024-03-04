@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+
+            background-color: #eee;
+            padding: 20px;
+            border: 25px ridge gold;
+            border-radius: 50px;
+            width: 800px;
+            margin: 20px auto;
+        }
+
+        p {
+            width: 500px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            padding:5px 10px;
+            font-weight: bold;
+            background-color: white;
+        }
+
+        input[type=number] {
+            text-align: right;
+        }
+    </style>
+    <script>
+        function pulsado(origen, quien) {
+
+            document.getElementById(origen).value = parseFloat(document.getElementById(origen).value)
+                + parseInt(quien.innerHTML);
+
+            cambio(document.getElementById(origen));
+        }
+        function cambio(origen) {
+            let vgc, vgf, vgk;
+            switch (origen.id) {
+                case "GC":
+                    vgc = parseFloat(origen.value);
+                    vgf = vgc * 1.8 + 32;
+                    vgk = vgc + 273.15;
+                    document.getElementById("GF").value = vgf.toFixed(2);
+                    document.getElementById("GK").value = vgk.toFixed(2);
+                    break;
+                case "GF":
+                    vgf = parseFloat(origen.value);
+                    vgc = (vgf - 32) / 1.8;
+                    vgk = vgc + 273.15;
+                    document.getElementById("GC").value = vgc.toFixed(2);
+                    document.getElementById("GK").value = vgk.toFixed(2);
+                    break;
+                case "GK":
+                    vgk = parseFloat(origen.value);
+                    vgc = vgk - 273.15;
+                    vgf = vgc * 1.8 + 32;
+                    document.getElementById("GC").value = vgc.toFixed(2);
+                    document.getElementById("GF").value = vgf.toFixed(2);
+                    break;
+            }
+
+
+        }
+        function cambiando(d){
+            let origen=(d.id).substring(1);
+
+            document.getElementById(origen).value = parseFloat(document.getElementById(origen).value)
+                + parseInt(d.value);
+
+            cambio(document.getElementById(origen));
+        }
+        function newcargar(destino) {
+            for (let i = 150; i >= -150; i--) {
+                let z = document.createElement("option");
+                z.text = i.toString();
+                z.value = i.toString();
+                destino.appendChild(z);
+            }
+            destino.addEventListener("change", () => { cambiando(destino); })
+            destino.selectedIndex = 150;
+        }
+        function cargar() {
+            newcargar(document.getElementById("SGC"));
+            newcargar(document.getElementById("SGF"));
+            newcargar(document.getElementById("SGK"));
+
+        }
+    </script>
+</head>
+
+<body onload="cargar()">
+    <div id="uno">
+        <p><label for="">Celsius</label>
+            <input type="number" pattern="\d{1,}" id="GC" value="0" onchange="cambio(this)">
+            <button onclick="pulsado('GC',this)">+1</button>
+            <button onclick="pulsado('GC',this)">-1</button>
+            <select id="SGC"></select>
+        </p>
+        <p><label for="">Fahrenheit</label>
+            <input type="number" id="GF" value="0" onchange="cambio(this)">
+            <button onclick="pulsado('GF',this)">+1</button>
+            <button onclick="pulsado('GF',this)">-1</button>
+            <select id="SGF"></select>
+        </p>
+        <p><label for="">Kelvin</label>
+            <input type="number" id="GK" value="0" onchange="cambio(this)">
+            <button onclick="pulsado('GK',this)">+1</button>
+            <button onclick="pulsado('GK',this)">-1</button>
+            <select id="SGK"></select>
+        </p>
+    </div>
+
+
+</body>
+
+</html>
