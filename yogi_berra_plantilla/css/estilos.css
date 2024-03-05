@@ -87,3 +87,14 @@ body{
     float: right;
     
  }
+
+
+ 
+
+ #tresp{
+    float:left;
+    background-color: rgb(175, 97, 24);
+    color: white;
+    border:2px ridge white;
+    
+ }
