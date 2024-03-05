@@ -5,10 +5,94 @@
 }
 
 body{
-    background-color: #A3C3EF;
+    /*cuerpo en el que es el borde*/
+    background-image: url(../img/violeta.png);
+    margin: 40px;
+    padding:0;
+
 }
 
-#contenedor h1{
+ h1{
+    /*fuente*/
     font-family: mifuente;
     text-align: center;
+    /*para sombras*/
+    text-shadow: -5px -5px 5px white;
+    line-height: 1.5em;
+    margin: 0px;
+    color: #6e649b;
+
 }
+#contenedor { /*div que globaliza todo*/
+    width: 800px;
+    height: 1150px;
+    margin: 0px auto;
+    background-image: url(../img/violeta.png);
+    /*background-color: #A3C3EF;*/
+}
+/*
+#contenedor hr{
+    color: #3f4d8d;
+    size: 20cm;
+    background-color: #3f4d8d;
+    
+ }
+*/
+#contenido {
+    width: 90%;
+    height: 80%;
+    background-color: #A3C3EF;
+    float: left;
+}
+/*
+#yogi img {
+    width: 30mm ;
+    height: 30mm;
+    padding: 5px;
+    border: 2px groove black;
+    margin: 5px;
+    float: left;
+}
+*/
+#yogi p{
+    text-align: justify ;
+    color: #000;
+    float: left;
+    width: 78%;
+    padding: 0px;
+    font-size: 0.95rem;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-weight: 700;
+}
+
+#yogi{
+    width: 100%;
+    height: 150px;
+    overflow: auto;
+    background-color: white;
+}
+
+#marco {
+    float: left;
+    padding: 5px;
+    border: 1px solid black;
+    margin-left: 5px;
+    margin: top 5px;
+}
+ #uno{
+    margin: 50px;
+    border:2px dashed white;
+    background-color: rgb(255, 153, 0);
+    color: white;
+ }
+
+ #dos{
+    background-image: url(../img/verde.png);
+    border-radius: 5px;
+    text-align: center;
+    width: 30%;
+    height: 20px;
+    float: auto;
+    
+ }
