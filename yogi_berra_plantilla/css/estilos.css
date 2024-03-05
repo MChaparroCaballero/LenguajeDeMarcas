@@ -1,0 +1,14 @@
+/*Incorporamos la fuente a todo*/
+@font-face {
+    font-family: 'mifuente' ;
+    src: url(../fuentes/slackey.woff2) format(woff2);
+}
+
+body{
+    background-color: #A3C3EF;
+}
+
+#contenedor h1{
+    font-family: mifuente;
+    text-align: center;
+}
