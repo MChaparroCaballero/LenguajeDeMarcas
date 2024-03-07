@@ -7,10 +7,21 @@ body{
     background-color: rgb(217, 233, 247);
 }
 
-
-
-#valenciano h1{
-    text-align: center;
+#contenido h1{
+    font-family: mifuente2;
+    text-shadow: 1px 1px black ;
     color: rgb(82, 131, 172);
-    text-shadow: 3px 3px black ;
+    text-align: left;
+   
+}
+
+#valenciano{
+    float: left;
+}
+#valenciano p{
+    float: left;
+}
+.lupust{
+    text-align: center;
+    font-family: mifuente2;
 }
