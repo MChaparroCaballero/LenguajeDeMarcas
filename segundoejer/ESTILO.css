@@ -6,49 +6,36 @@
     margin-top: 100px;
 }
 
-#a{
+#cuadrado p{
     font-size:  100px;
     background-color: rgb(241, 235, 222);
     width: 150px;
     height: 120px;
-    margin: 0px 0px 0px 0px;
     text-align: center;
+}
+#a{
+   
+    margin: 0px 0px 0px 0px;
     padding: 3px;
 }
 
 #b{
-    font-size:  100px;
-    background-color: rgb(241, 235, 222);
-    width: 150px;
-    height: 120px;
-    text-align: center;
+   
     margin: -126px 0px 0px 450px;
     
 }
 
 #c{
-    font-size:  100px;
-    background-color: rgb(241, 235, 222);
-    width: 150px;
-    height: 120px;
-    text-align: center;
+    
     margin: 59px 00px 00px 230px;
 }
 
 #d{
-    font-size:  100px;
-    background-color: rgb(241, 235, 222);
-    width: 150px;
-    height: 120px;
-    text-align: center;
+    
     margin: 81px  100px 100px 0px;
 }
 #e{
-    font-size:  100px;
-    background-color: rgb(241, 235, 222);
-    width: 150px;
-    height: 120px;
-    text-align: center;
+    
     margin: -220px 0px 0px 450px;
 }
 
