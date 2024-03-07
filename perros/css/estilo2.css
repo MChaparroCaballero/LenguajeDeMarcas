@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'mifuente2' ;
+    src: url(../fuentes/sigmar_one.woff) format(woff2);
+}
+
+body{
+    background-color: rgb(217, 233, 247);
+}
+
+
+
+#valenciano h1{
+    text-align: center;
+    color: rgb(82, 131, 172);
+    text-shadow: 3px 3px black ;
+}
