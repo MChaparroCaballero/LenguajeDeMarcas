@@ -8,6 +8,13 @@ body{
     height: 880px;
     width: 66%;
   margin: 0px auto;
-  
 
+
+}
+
+.primero,.segundo{
+display: table-cell;
+border: white 8px outset;
+vertical-align: middle;
+padding: 40px;
 }
