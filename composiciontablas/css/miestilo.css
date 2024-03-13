@@ -1,27 +1,31 @@
-body{
+/*body{
     background-color: #76a0e3;
    margin: 40px;
 }
 
 #contenedor{
     background-color: aqua;
-    height: 880px;
-    width: 66%;
-    border: 5px;
-    border-radius: 5px;
-    border-style: groove;
+    height: 100%;
+    width: 800px;
+    border: 14px inset white;
+    border-radius: 25px;
+    border-spacing: 25px;
     margin: 0px auto;
-
-
+    padding: 30px;
+    display: table;
 }
 
-.primero{
+.fila{
+  display: table-row;
+  height: 100%;
+}
+.primero, .segundo{
 width: 100px;
 height: 20px;
 display: table-cell;
 border: white 8px outset;
 vertical-align: middle;
-
+padding: 80px;
 
 }
 
@@ -37,3 +41,28 @@ vertical-align: middle;
     position: absolute;
     top: 7%;
   }
+  */
+  body {
+    background-color: #4B80B1;
+    margin:40px;
+    padding:0px;
+  }
+  #contenedor {
+    background-color: aqua;
+    border-radius: 25px;
+    border-spacing: 25px;
+    border:14px inset white;
+    display: table;
+    height: 100%;
+    margin:0px auto;
+    width:800px;
+    padding:30px;
+  }
+  .fila {  display: table-row;height: 100%;}
+  
+  .principal, .secundario{
+    display: table-cell; border: white 8px outset;vertical-align: middle;padding:80px;
+  }
+  .secundario pre,.principal table{margin:0px auto;font-size: 1.2rem;}
+  
+  caption{background-color: yellow;border:4px ridge green;text-transform: uppercase;}
