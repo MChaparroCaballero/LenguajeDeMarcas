@@ -7,14 +7,33 @@ body{
     background-color: aqua;
     height: 880px;
     width: 66%;
-  margin: 0px auto;
+    border: 5px;
+    border-radius: 5px;
+    border-style: groove;
+    margin: 0px auto;
 
 
 }
 
-.primero,.segundo{
+.primero{
+width: 100px;
+height: 20px;
 display: table-cell;
 border: white 8px outset;
 vertical-align: middle;
-padding: 40px;
+
+
 }
+
+.segundo{
+  display: table-cell;
+  border: white 8px outset;
+  vertical-align: middle;
+
+ 
+  }
+
+  #contenedor pre{
+    position: absolute;
+    top: 7%;
+  }

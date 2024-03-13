@@ -73,10 +73,11 @@ body{
     border-radius: 5px;
 }
 #fuentes{
-    visibility: hidden;
+    text-align: right;
+    font-style: normal
 }
 
-mark{
+strong{
     background-color: white;
     color: red;
     font-weight: bold;
@@ -88,14 +89,22 @@ mark{
     font-weight: bold;
 }
 
-#contenido strong{
+#contenido time{
     color: blue;
     font-weight: lighter;
 }
 
-.pi{
-    text-align: left;
-}
+
 .p2{
     text-align: left;
+    float: right;
+}
+.p1{
+    text-align: left;
+    float: left;
+    width: 94%;
+}
+
+p.centrado{
+    text-align: center;
 }
