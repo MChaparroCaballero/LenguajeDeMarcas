@@ -1,33 +1,33 @@
 html {
     background-color: hwb(150 25% 30%);
-    font-family: ;
+    font-family: sans-serif ;
     line-height: 125%;
-    text-align: ;
+    text-align: justify;
     hyphens: auto;
 }
 
 section {
     display: flex;
-    flex-wrap: ;
-    justify-content: ;
+    flex-wrap:wrap;
+    justify-content:space-around ;
 }
 
 article {
     display: flex;
-    flex-direction: ;
-    width: ;
-    margin: ;
+    flex-direction:row;
+    width: 500px ;
+    margin: 50px;
     border: black 3px solid;
     background-color: hwb(150 50% 30%);
 }
 
 h2 {
-    margin: ;
-    padding: ;
+    margin: 1px;
+    padding: 10px;
     border-right: black 1px solid;
 }
 
 div {
-    margin: ;
+    margin:10px ;
 }
 

@@ -1,32 +1,32 @@
 html {
     background-color: hwb(35 50% 15%);
-    font-family: ;
+    font-family: sans-serif;
     line-height: 125%;
-    text-align: ;
+    text-align: justify;
     hyphens: auto;
 }
 
 section {
     display: flex;
-    flex-wrap: ;
+    flex-wrap: wrap;
 }
 
 article {
-    flex: ;
-    width: ;
-    margin: ;
+    flex: 1 0 auto ;
+    width: 300px ;
+    margin: 10px;
     border: black 3px solid;
     background-color: hwb(35 70% 5%);
 }
 
 h2 {
     background-color: lightgray;
-    margin: ;
-    padding: ;
-    text-align: ;
+    margin:0px ;
+    padding:10px ;
+    text-align: center;
     border-bottom: black 3px solid;
 }
 
 p {
-    padding: ;
+    padding: 5px;
 }
