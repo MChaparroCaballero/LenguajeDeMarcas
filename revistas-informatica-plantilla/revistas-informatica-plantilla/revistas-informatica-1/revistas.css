@@ -8,13 +8,15 @@ html {
 
 section {
     display: flex;
-    flex-wrap: ;
+    flex-wrap:none;
 }
 
 article {
-    width: ;
-    margin: ;
-    padding: ;
+    width: 100% ;
+    margin: 5px;
+    padding: 15px ;
     border: black 3px solid;
     background-color: hwb(350 70% 5%);
 }
+
+
