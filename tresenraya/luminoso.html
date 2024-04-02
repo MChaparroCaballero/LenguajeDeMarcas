@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       p{ text-align:center;
+        width: 200px;
+        margin: 20px auto;
+        font-size: 24px;
+    }
+        
+    </style>
+    <script>
+        var cadena=" estais muy pesados";
+        var n=0;
+        function cambio(){
+            n++
+            let variable=document.getElementById("mensaje");
+            variable.innerHTML=cadena.substring(0,n);
+        }
+        function inicio(){
+            setInterval(function(){ cambio();},500);
+           
+        }
+    </script>
+</head>
+<body>
+    <p id="mensaje"></p>
+</body>
+</html>

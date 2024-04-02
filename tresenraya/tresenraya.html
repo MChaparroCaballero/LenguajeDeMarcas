@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./estilos/estilo.css">
+    <style>
+        #marco{
+            
+            margin: 200px auto;
+            border: 5px ridge gold;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <script>
+        /*ejer1 haz que cuanda clicknos saque imagenes aleatorias d euestra galeria*/
+        var actual=1;
+        var turno=true;
+        
+        
+        function alea(li, ls){
+            /*math floor es para conseguir el entero menor o igual que otra expresion seria lo mismo que un parse int*/
+          let a=Math.floor((Math.random()*(ls-li+1)))+li;
+          return parseInt(a);
+        } 
+        function cambio(origen){
+            /*coge un numero random y como toda las imagenes tienen la primera parte de la ruta inicial igual y la parte final tambien solo hay que cambiar el numero y de eso hacemos aleatorio*/
+            /*let n= alea(1,8);
+            origen.src="./img/numeros/numero_"+n+".png";*/
+            actual++;
+             if(actual==9)actual=1;
+             origen.src="./img/numeros/numero_"+actual+".png";
+    
+        
+          /*  
+            if(turno){
+               origen.src="./img/numeros/numero_2.png"
+            }else{
+                origen.src="./img/numeros/numero_1.png"
+            }
+            turno=!turno
+            */
+        }
+
+        function inicio(){
+            let z=document.getElementById("imagen");
+            setInterval(function(){ cambio(z);},1000);
+           
+        }
+        /*cada segundo quiere que hagamos un cambio de imagen, empiece en la 1,,3 etc y cuando llegue a la 8 empieza de nuevo*/
+        
+    </script>
+</head>
+<body onload="inicio()">
+   <div id="marco"><img onclick="cambio(this)" src="./img/numeros/numero_1.png" alt=""></div>
+</body>
+</html>
