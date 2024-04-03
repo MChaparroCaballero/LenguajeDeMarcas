@@ -19,6 +19,7 @@
             n++
             let variable=document.getElementById("mensaje");
             variable.innerHTML=cadena.substring(0,n);
+            if(n==cadena.length)n=0;
         }
         function inicio(){
             setInterval(function(){ cambio();},500);
