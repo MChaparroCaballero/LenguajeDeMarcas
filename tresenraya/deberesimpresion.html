@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 en raya</title>
+</head>
+<body>
+    <script>
+        var n=7;
+        var res=crear(n,n);
+        var lista=crear(n,n);
+        rellenar(lista);
+        rellenar(res);
+        imprimir(lista);
+        respuestas(res);
+       
+        correcion(res);
+     
+
+        function crear(n,m){
+            let matriz=new Array(n);
+            for(let i=0;i<matriz.length;i++)
+            matriz[i]=new Array(m);
+        return matriz;
+        }
+
+        function rellenar(matriz){
+            let k=1;
+            for(let i=0; i<matriz.length;i++){
+                for(let j=0; j<matriz[i].length;j++){
+                    matriz[i][j]=k++;
+                }
+            }
+            
+        }
+        function imprimir(matriz){
+            let cadena="<table border=1>";
+                for(let i=0; i<matriz.length;i++){
+                    
+                    cadena +="<tr>";
+                        for(let j=0; j<matriz[i].length;j++){
+                            
+                            cadena += "<td>"+matriz[i][j]+"</td>";}
+                        
+                        cadena +="</tr>";
+                
+            }
+
+           
+            
+                cadena +="<table>";
+                document.write(cadena);
+        }
+       
+        function correcion(res){
+            for(let i=0; i<res.length;i++){
+                        for(let j=0; j<res[i].length;j++){
+                            document.write(res[i][j]);
+                        }         
+        }
+    }
+        function respuestas(res){
+            let k=1;
+            for(let i=0; i<res.length;i++){
+                for(let j=0; j<res[i].length;j++){
+                    while{k%n==0}{
+                        res[i][j]=(k);
+                        k++;
+                    }
+                
+                }
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>

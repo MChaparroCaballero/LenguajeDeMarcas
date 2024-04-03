@@ -1,0 +1,91 @@
+body{
+    background-color: brown;
+    margin: 0px;
+    padding: 0px;
+}
+
+#marco{
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 600px;
+    height: 600px;
+    border: 3px black solid;
+}
+#m1{
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    
+    background-color: rgb(9, 255, 0);
+    width: 500px;
+    height: 100px;
+    margin: auto;
+    border: 3px solid white;
+    text-align: justify;
+}
+#m2{
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(204, 108, 19);
+    width: 500px;
+    height: 100px;
+    margin: auto;
+    border: 3px solid white;
+    text-align: justify;
+}
+#m3{
+position: absolute;
+top: 200px;
+left: 0;
+background-color: aqua;
+width: 300px;
+height: 100px;
+border: 3px solid white;
+text-align: justify;
+
+}
+#m4{
+    position: absolute;
+    top: 200px;
+    right: 0;
+    background-color: rgb(12, 88, 88);
+    width: 300px;
+    height: 100px;
+    border: 3px solid white;
+    text-align: justify;
+}
+#m5{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    background-color: rgb(88, 12, 72);
+    width: 300px;
+    height: 100px;
+    border: 3px solid white;
+    text-align: justify;
+    margin: 0;
+}
+#m6{
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    background-color: rgb(72, 88, 12);
+    width: 300px;
+    height: 100px;
+    border: 3px solid white;
+    text-align: justify;
+    margin: 0;
+}
+
+#m6::first-letter{
+    color: blue;
+}
+   
