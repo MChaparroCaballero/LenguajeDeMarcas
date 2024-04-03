@@ -29,8 +29,8 @@
             /*coge un numero random y como toda las imagenes tienen la primera parte de la ruta inicial igual y la parte final tambien solo hay que cambiar el numero y de eso hacemos aleatorio*/
             /*let n= alea(1,8);
             origen.src="./img/numeros/numero_"+n+".png";*/
-            actual++;
-             if(actual==9)actual=1;
+            
+             if(++actual==9)actual=1;
              origen.src="./img/numeros/numero_"+actual+".png";
     
         
@@ -54,6 +54,6 @@
     </script>
 </head>
 <body onload="inicio()">
-   <div id="marco"><img onclick="cambio(this)" src="./img/numeros/numero_1.png" alt=""></div>
+   <div id="marco"><img id="imagen" onclick="cambio(this)" src="./img/numeros/numero_1.png" alt=""></div>
 </body>
 </html>
