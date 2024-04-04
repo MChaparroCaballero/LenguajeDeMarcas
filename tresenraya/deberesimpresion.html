@@ -6,18 +6,41 @@
     <title>4 en raya</title>
 </head>
 <body>
+
     <script>
-        var n=7;
-        var res=crear(n,n);
+        /*impreme las pposibles soluciones del cuadrado */
+        var n=3;
+        var nf=(n*2)+2;
+        var soluciones=crear(nf,n);
         var lista=crear(n,n);
         rellenar(lista);
-        rellenar(res);
         imprimir(lista);
-        respuestas(res);
+        rellenar(soluciones);
+        imprimir(soluciones);
+        alert(soluciones);
+        /*k va a ser lo que reparte el numero de posiciones de lista en grupo  de n*/
+        var k=0;
        
-        correcion(res);
+        for(let i=0; i<soluciones.length;i++){
+            /*i es para recorrer las posiciones de lista, lo mismo que j, pero k es para las posiciones de soluciones*/
+                for(let j=0; j<soluciones[i].length;j++){
+                    /*j corresponde a j de lista pero k correspondera a i porque vamos a lo horizontal*/
+                    soluciones[k][j] = lista[i][j];
+                    soluciones[k+n+i][j] = lista[i][j];
+                }
+                /*despues de asignarle valor a respuestas sumamos a la k para que asi valla a otra cajetilla de respuesta*/
+                k++;
+            }
      
-
+            /*
+            for(let j=0; j<soluciones.length;j++){/*aqui nos la recorremos a lo vertical por eso empezamos con j
+                for(let i=0; i<soluciones[j].length;i++){
+                    /*i aqui correspondera a la de lista pero k corespondera a j porque vamos a lo vertical
+                    soluciones[k][i] = lista[i][j];
+                }
+                k++;
+            }
+            */
         function crear(n,m){
             let matriz=new Array(n);
             for(let i=0;i<matriz.length;i++)
@@ -53,25 +76,7 @@
                 document.write(cadena);
         }
        
-        function correcion(res){
-            for(let i=0; i<res.length;i++){
-                        for(let j=0; j<res[i].length;j++){
-                            document.write(res[i][j]);
-                        }         
-        }
-    }
-        function respuestas(res){
-            let k=1;
-            for(let i=0; i<res.length;i++){
-                for(let j=0; j<res[i].length;j++){
-                    while{k%n==0}{
-                        res[i][j]=(k);
-                        k++;
-                    }
-                
-                }
-            }
-        }
+  
         
         
     </script>
