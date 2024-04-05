@@ -9,29 +9,36 @@
 
     <script>
         /*impreme las pposibles soluciones del cuadrado */
-        var n=3;
+        var n=4;
         var nf=(n*2)+2;
         var soluciones=crear(nf,n);
         var lista=crear(n,n);
         rellenar(lista);
         imprimir(lista);
-        rellenar(soluciones);
-        imprimir(soluciones);
-        alert(soluciones);
+        
+       
+        
         /*k va a ser lo que reparte el numero de posiciones de lista en grupo  de n*/
         var k=0;
        
-        for(let i=0; i<soluciones.length;i++){
+       
+        for(var i=0; i<n;i++){
+            /*con esto generalizamos elsacar las diagonales, primero la diagonal principal y luego la diagonal secundaria*/
+            soluciones[nf-2][i] = (i*n) + (i+1);
+            soluciones[nf-1][i]=(1*n)+(n-i);
             /*i es para recorrer las posiciones de lista, lo mismo que j, pero k es para las posiciones de soluciones*/
-                for(let j=0; j<soluciones[i].length;j++){
+                for(var j=0; j<n;j++){
                     /*j corresponde a j de lista pero k correspondera a i porque vamos a lo horizontal*/
-                    soluciones[k][j] = lista[i][j];
-                    soluciones[k+n+i][j] = lista[i][j];
+                    soluciones[k][j] = (i*n)+(j+1);
+                    soluciones[k+n][j] = (j*n)+(i+1);
                 }
                 /*despues de asignarle valor a respuestas sumamos a la k para que asi valla a otra cajetilla de respuesta*/
                 k++;
             }
-     
+        
+
+        document.write("<hr>");
+        imprimir(soluciones);
             /*
             for(let j=0; j<soluciones.length;j++){/*aqui nos la recorremos a lo vertical por eso empezamos con j
                 for(let i=0; i<soluciones[j].length;i++){
