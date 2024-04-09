@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4 en raya</title>
+    <title>Juego magistral</title>
     <style>
 
         #marco1990{
@@ -31,84 +31,144 @@
 
     </style>
     <script>
-        /*impreme las pposibles soluciones del cuadrado */
-        var n=4;
-        var nf=(n*2)+2;
-        var soluciones=crear(nf,n);
-        var lista=crear(n,n);
-        rellenar(lista);
-        imprimir(lista);
-        
        
-        
-        /*k va a ser lo que reparte el numero de posiciones de lista en grupo  de n*/
-        var k=0;
-       
-       
-        for(var i=0; i<n;i++){
-            /*con esto generalizamos elsacar las diagonales, primero la diagonal principal y luego la diagonal secundaria*/
-            soluciones[nf-2][i] = (i*n) + (i+1);
-            soluciones[nf-1][i]=(1*n)+(n-i);
-            /*i es para recorrer las posiciones de lista, lo mismo que j, pero k es para las posiciones de soluciones*/
-                for(var j=0; j<n;j++){
-                    /*j corresponde a j de lista pero k correspondera a i porque vamos a lo horizontal*/
-                    soluciones[k][j] = (i*n)+(j+1);
-                    soluciones[k+n][j] = (j*n)+(i+1);
-                }
-                /*despues de asignarle valor a respuestas sumamos a la k para que asi valla a otra cajetilla de respuesta*/
-                k++;
-            }
-        
-
-        document.write("<hr>");
-        imprimir(soluciones);
-            /*
-            for(let j=0; j<soluciones.length;j++){/*aqui nos la recorremos a lo vertical por eso empezamos con j
-                for(let i=0; i<soluciones[j].length;i++){
-                    /*i aqui correspondera a la de lista pero k corespondera a j porque vamos a lo vertical
-                    soluciones[k][i] = lista[i][j];
-                }
-                k++;
-            }
-            */
-        function crear(n,m){
-            let matriz=new Array(n);
-            for(let i=0;i<matriz.length;i++)
-            matriz[i]=new Array(m);
-        return matriz;
+        /*para la creacion del tablero*/
+        var nfc=parseInt(prompt("Dime el numero "));
+        /*cuantas posibles soluciones hay*/
+        var posi=nfc*nfc;
+        var filas=(nfc*2)+2;
+        /*controla si el jugador juega ahora o no*/
+        var turno=true;
+        /*las veces que cada jugador a echo click en una imagen*/
+        var jugadores=[0,0];
+        var juegoiniciado=false;
+         /*matriz de posibles soluciones*/
+        var validas=matrizBidimensional(filas,nfc);
+        rellenar();
+        /*la rellenamos*/
+        /*matriz de las respuestas de los jugadores*/
+        var jugadas=matrizBidimensional(nfc,nfc);
+        rellenarCeros();
+    /*****************************************************************/
+    function matrizBidimensional(f, c) {
+            let tb = new Array(f);
+            for (let i = 0; i < f; i++)tb[i] = new Array(c);
+            return tb;
         }
+     /*****************************************************************/
+     function rellenarCeros() {  /*las llenamos de 0*/
+            for (let i = 0; i < nfc; i++)jugadas[i].fill(0);
+        }
+      /*****************************************************************/
+      function rellenar() {
+            let c = 0;
+            for (let i = 0; i < nfc; i++) {
+                validas[filas-2][i] = (i * nfc) + (i + 1);
+                validas[filas-1][i] = (i * nfc) + (nfc - i);
+                for (let j = 0; j < nfc; j++) {
+                    validas[c][j] = (i * nfc) + (j + 1);
+                    validas[c + nfc][j] = (j * nfc) + (i + 1);
+                }
+                c++;
+            }
+        }
+     /*****************************************************************/
+     function inicial(){ /*manipulamos el estilo del elemento deopendiendo de lo que dan las otras funciones, oseal el tamañao del div*/
+     
+        const y=100;
+          /*destino es el marco*/
+        var destino=document.getElementById("marco1990");
+        destino.style.width=(nfc*y)+"px";
+        document.getElementById("mensaje").style.width=(nfc*y)+"px";
+        document.getElementById("inicio").style.width=(nfc*y)+"px";
+ 
+        for(i=1;i<=posi;i++)ponimagen(destino,"imagen_"+i,y);
+         /*donde las ponemos? en destino, como las llamamos imagen_ osea id hasta i con tamaño de y osea ancho*/
+     
+        document.getElementById("inicio").addEventListener("click",()=>{ start();  });
+     }
+     /*****************************************************************/
+     function ponimagen(des,id,ancho){/*des es destino, id es imagen_ hasta i, y ancho es y*/
+          
+        var elem=document.createElement("img");
+        elem.setAttribute("src","./img/numeros/fondo.jpg");
+        elem.setAttribute("width",ancho);
+        elem.setAttribute("height",ancho);
+        elem.setAttribute("id",id);
+        des.appendChild(elem);
+       
+        var ori=document.getElementById(id);
+        ori.addEventListener("dblclick",function(){cambio(ori);});
+ 
+     }
+    /*****************************************************************/
+    function start(){
+        juegoiniciado=true;
+        document.getElementById("mensaje").innerHTML="Turno de Jugador:1";
+        document.getElementById("inicio").innerHTML="Juego Iniciado";
+    }
+    /*****************************************************************/
+    
+    function obtener_numero(cadena){
+        /*el index cuenta posiciones de los caracteres hasta que llega al guion y el substring lo que haxe es que te coje la cadena despues de  el numero de caracteres que tenga entre parentesis*/
+        return cadena.substr(cadena.indexOf("_")+1);
+    }
 
-        function rellenar(matriz){
-            let k=1;
-            for(let i=0; i<matriz.length;i++){
-                for(let j=0; j<matriz[i].length;j++){
-                    matriz[i][j]=k++;
+    /*****************************************************************/
+    
+    function cambio(origen){
+        if(!juegoiniciado)return;
+        let n=obtener_numero(origen);
+        /*fila y columna*/
+        let c=(n-1)%nfc;
+        let r=parseInt((n-1)/nfc);
+        if(jugadas[r][c]!=0)return;
+        /*si turno es verdadero le asigna 1 y si no le asignara 2 el pim pam del juego*/
+        w=turno==true ? 1:2;
+        origen.src="./img/numeros/numero_"+w+".png";
+        jugadas[r][c]=w;
+        jugadores[w-1]++;/*si w es igual a 1 le restamos 1 para ir a la posicion 0 del array de cuantos clicks ha hecho cada jugador y despues vamos sumando*/
+        if (jugadores[w - 1] >= nfc) {/*si en la matriz de clicks alguno de ellos da al numero de nfc osea parametros del tablero mira haber si alguien gano*/
+                gano = comprueba(w);
+                if (gano) {
+                    setTimeout(function () {
+                        alert("Gano el " + w);
+                        reiniciar();/*nos reinicia el juego*/
+                        return;
+                    }, 200);
                 }
             }
-            
-        }
-        function imprimir(matriz){
-            let cadena="<table border=1>";
-                for(let i=0; i<matriz.length;i++){
-                    
-                    cadena +="<tr>";
-                        for(let j=0; j<matriz[i].length;j++){
-                            
-                            cadena += "<td>"+matriz[i][j]+"</td>";}
-                        
-                        cadena +="</tr>";
-                
+            if (jugadores[0] + jugadores[1] == posi) {
+                setTimeout(function () {
+                    alert("Empatados");
+                    reiniciar();
+                }, 200);
             }
-
-           
-            
-                cadena +="<table>";
-                document.write(cadena);
+            turno = !turno;
+            document.getElementById("mensaje").innerHTML = turno == true ? "Turno de Jugador:1" : "Turno de Jugador:2";
         }
-       
-  
-        window.addEventListener(load,()=>{inicial();});
-        
+        /***********************************/
+        function comprueba(numero) {
+            let m = 0; let c = 0; let r = 0;
+ 
+            for (let i = 0; i < validas.length; i++) {
+                let n = 0;
+                for (let j = 0; j < validas[i].length; j++) {
+                    m = validas[i][j];
+                    c = (m - 1) % nfc;
+                    r = parseInt((m - 1) / nfc);
+ 
+                    if (jugadas[r][c] == numero) n++
+                }
+                if (n == nfc) return true;
+            }
+            return false;
+        }
+    
+
+    /*****************************************************************/
+    
+     window.addEventListener("load",()=>{ inicial();  });
     </script>
 </head>
 <body>
