@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego magistral</title>
-    <style>
+    <style type="text/css">
 
         #marco1990{
             width: 400px;
@@ -57,7 +57,7 @@
         }
      /*****************************************************************/
      function rellenarCeros() {  /*las llenamos de 0*/
-            for (let i = 0; i < nfc; i++)jugadas[i].fill(0);
+            for (let i = 0; i < jugadas.length; i++)jugadas[i].fill(0);
         }
       /*****************************************************************/
       function rellenar() {
@@ -72,6 +72,19 @@
                 c++;
             }
         }
+
+            /***********************************/
+            function reiniciar() {
+            var destino = document.getElementById("marco1990");
+            for (i = 1; i <= posi; i++)document.getElementById("imagen_" + i).src = "./img/numeros/fondo.jpg";
+            document.getElementById("mensaje").innerHTML = "Juego sin comenzar";
+            document.getElementById("inicio").innerHTML = "Inicio Juego";
+            turno = true;
+            jugadores = [0, 0];
+            juegoiniciado = false
+            rellenarCeros();
+        }
+        
      /*****************************************************************/
      function inicial(){ /*manipulamos el estilo del elemento deopendiendo de lo que dan las otras funciones, oseal el tamañao del div*/
      
@@ -109,16 +122,9 @@
     }
     /*****************************************************************/
     
-    function obtener_numero(cadena){
-        /*el index cuenta posiciones de los caracteres hasta que llega al guion y el substring lo que haxe es que te coje la cadena despues de  el numero de caracteres que tenga entre parentesis*/
-        return cadena.substr(cadena.indexOf("_")+1);
-    }
-
-    /*****************************************************************/
-    
     function cambio(origen){
         if(!juegoiniciado)return;
-        let n=obtener_numero(origen);
+        let n=obtener_numero(origen.id);
         /*fila y columna*/
         let c=(n-1)%nfc;
         let r=parseInt((n-1)/nfc);
@@ -165,9 +171,14 @@
             return false;
         }
     
-
     /*****************************************************************/
-    
+    function obtener_numero(cadena) {
+         /*el index cuenta posiciones de los caracteres hasta que llega al guion y el substring lo que haxe es que te coje la cadena despues de  el numero de caracteres que tenga entre parentesis*/
+        
+            return cadena.substr(cadena.indexOf("_") + 1);
+        }
+    /*****************************************************************/
+
      window.addEventListener("load",()=>{ inicial();  });
     </script>
 </head>
