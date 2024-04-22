@@ -51,11 +51,26 @@
     </style>
     <script>
         window.addEventListener("load",()=>{inicio();})
-
+        var semana=["L","M","X","J","V","S","D"];
         var arrayMeses=["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
+        
         function inicio(){
             ponmeses();
             ponaños();
+        }
+
+        function cabecera(vmes){
+            var cadena="";
+            cadena+="<CAPTION> "+arrayMeses[vmes]+ "</CAPTION>";
+            cadena +="<thead>";
+                cadena+="<tr>";
+                    for(var i=0;i<semana.length;i++){
+                        cadena+="<th> "+ semana[i] +"</th>";
+                    }
+                    
+                cadena+="</tr>";
+            cadena +="</thead>";
+            return cadena;
         }
 
         function ponmeses(){
@@ -110,16 +125,49 @@
         }
 
 
-        function cambio(){//cada vez que cambies de opcion te saca un mensaje de alerta//
+        function cambio() {//cada vez que cambies de opcion te saca un mensaje de alerta//
+        var anno= document.getElementById("cbaños").value;//en una variable nueva hacemos referencia al value del select con la id del select para que nos identifique los cambios del valor//
+        var mes=document.getElementById("cbmeses").value;//en una variable nueva hacemos referencia al value del select con la id del select//
+        var inicio="<table border=1 align='center'>";//esta que inicialemente esta vacia es para la trabla//
+        inicio +=cabecera(mes);
+         
+         
+           var fecha=new Date(anno,mes,1);//te crea una nueva fecha//
+           //esto lo hacemos porque en get day domingo es 0 y lunes es 1 pero en nuestro array lunes es 0, no coinciden entonces le restamos a todos 1 y domingo se nos qedaria en -1 asique si pasa eso le ponemos que sea igual a 6 como en el array de arriba esto es solo para el primer dia//
+           var nweek=fecha.getDay();
+           nweek--;
+           if (nweek==-1) nweek=6;
+ 
+            //creamos el body y la primera t row//
+           var cadena="<tbody><tr>" //no hay que poner ; porque si no se jode//
+            //creamos los espacios en la tabla//
+           for(var i=1;i<=nweek;i++) cadena +="<td>&nbsp;</td>";
+ 
+ 
+            var mes=fecha.getMonth();   //nº mes 0-11;guarda los meses del 0 al 11 necesitamos guardar los meses en un array de meses y luego aqui tambien para poder comparar//
             
+            while(fecha.getMonth()==mes){
+            //te escribe el dia, el mes y el año//
+            //cadena+=fecha.getDay()+" "+fecha.getDate()+"-"+fecha.getMonth()+"-"+fecha.getFullYear()+"<br>";//
+            //rellenamos los espacios en blanco//
             
-            var anno=document.getElementById("cbaños").value;//en una variable nueva hacemos referencia al value del select con la id del select para que nos identifique los cambios del valor//
-            var mes=document.getElementById("cbmeses").value;//en una variable nueva hacemos referencia al value del select con la id del select//
-            
-            alert(anno+" "+mes);//nos alerta mostrandonos el valor del select de años y el selct de los meses de lo selecionado aka nuevo valor//
+            cadena +="<td>"+fecha.getDate()+"</td>";
+             //esto para todos los dias lo del incoincidencias del array y get day//
+          
+            if (nweek==6) cadena +="</tr><tr>"
+                fecha.setDate(fecha.getDate()+1);
+               nweek=fecha.getDay();
+               nweek--;
+               if (nweek==-1) nweek=6;
+           }
+            cadena +="</tr></tbody></table>";
+           document.getElementById("calendario").innerHTML=inicio+cadena;//concatenamos para que nos muestre los dias del calendario y los de la semana//
+   
+       
         }
 
-
+        //alert(anno+" "+mes);//nos alerta mostrandonos el valor del select de años y el selct de los meses de lo selecionado aka nuevo valor//
+           
        
 
     </script>
