@@ -52,30 +52,76 @@
     <script>
         window.addEventListener("load",()=>{inicio();})
 
+        var arrayMeses=["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
         function inicio(){
             ponmeses();
             ponaños();
         }
 
-        function ponaños(){//funcion que nos rellena el cuadrado de los años//
-            var destino= document.getElementById("divaños");//hacemos referencia al div//
-            var fecha = new Date();//fecha del sistema//
-            var anno=fecha.getFullYear();//te da el año con 4 cifras//
-            
-            //nos va a ir creando primero el select y luego las opciones del select que iran rellenando el cuadrado de los años//
-            var annos=document.createAttribute("select");
-            annos.setAttribute("id","cbaños");
-            //metemos annos en destino aka divaños//
-            destino.appendChild(annos);
-            for(var i=0;i<=50;i++){
-                //creamos las opciones del select, las damos contenido aka value y las metemos en annos//
+        function ponmeses(){
+            //hacemos referencia a el div donde metemos otro para manejar mejor//
+            var destino= document.getElementById("divmeses"); 
+            //en var meses creamos un select//
+            var meses=document.createElement("select");
+            //ponemos atributos de id a el select//
+            meses.setAttribute("id","cbmeses");
+             //metemos meses en destino aka divmeses//
+            destino.appendChild(meses);
+            meses.addEventListener("change",()=>{cambio();})
+
+            //hacemos las opciones del select de meses de el primer mes hasta el ultimo//
+            for(var i=0; i<arrayMeses.length;i++){
+
+                //creamos una opcion por iteracion//
                 var op=document.createElement("option");
-                op.setAttribute("value",anno+i);//+i para que valla sumando años cada iteracion//
-                op.text=anno+i;
-                annos.appendChild(op);
+                //ponemos que su texto aka lo que muestra en pantalla sea lo que haya en el array de meses en la misma posicion//
+                op.text=arrayMeses[i];
+                //le ponemos el valor de i que es el mismo de las posiciones//
+                op.setAttribute("value",i);
+                //metemos op en meses//
+                meses.appendChild(op);
             }
 
         }
+
+        function ponaños(){//funcion que nos rellena el cuadrado de los años//
+           
+            var destino=document.getElementById("divaños");
+            var fecha=new Date();  //Fecha del sistema
+            var anno=fecha.getFullYear(); //te da el año con 4 cifras//
+ 
+             //nos va a ir creando primero el select y luego las opciones del select que iran rellenando el cuadrado de los años//
+           
+            var annos=document.createElement("select");
+            annos.setAttribute("id","cbaños");
+             //metemos annos en destino aka divaños//
+            destino.appendChild(annos);
+            annos.addEventListener("change",()=>{cambio();})
+ 
+            for(var i=0;i<=50;i++){//de aqui ha 50 años//
+
+                //creamos las opciones del select, las damos contenido aka value y las metemos en annos//
+                var op=document.createElement("option");
+                op.setAttribute("value",anno+i);//+i para que valla sumando años cada iteracion//
+                op.text=anno+i;//muestra el texto//
+                annos.appendChild(op);
+            }
+ 
+        }
+
+
+        function cambio(){//cada vez que cambies de opcion te saca un mensaje de alerta//
+            
+            
+            var anno=document.getElementById("cbaños").value;//en una variable nueva hacemos referencia al value del select con la id del select para que nos identifique los cambios del valor//
+            var mes=document.getElementById("cbmeses").value;//en una variable nueva hacemos referencia al value del select con la id del select//
+            
+            alert(anno+" "+mes);//nos alerta mostrandonos el valor del select de años y el selct de los meses de lo selecionado aka nuevo valor//
+        }
+
+
+       
+
     </script>
 </head>
 <body>
