@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #contenedor{
+            width: 768px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid silver;
+            text-align: center;
+        }
+
+        #parametros{
+            width: 300px;
+            margin: 0px auto 20px auto;
+            text-align: center;
+        }
+        h2{
+            margin-bottom: 1.3em;
+	font: normal 30pt Arial;
+	color: #15015B;
+	text-shadow: 0 1px 0 #CCC,
+	 0 2px 0 #c9c9c9,
+	 0 3px 0 #bbb,
+	 0 4px 0 #b9b9b9,
+	 0 5px 0 #aaa,
+	 0 6px 1px rgba(0,0,0,.1),
+	 0 0 5px rgba(0,0,0,.1),
+	 0 1px 3px rgba(0,0,0,.3),
+	 0 3px 5px rgba(0,0,0,.2),
+	 0 5px 10px rgba(0,0,0,.25),
+	 0 10px 10px rgba(0,0,0,.2),
+	 0 20px 20px rgba(0,0,0,.15);
+        }
+
+        #divaños,#divmeses{
+        width: 100px;
+        margin: 0px auto 20px auto;
+        padding: 20px;
+        border-radius: 25px;
+        background-color: rgba(73,199,185,0.70);
+        text-shadow: 2px 2px 0px rgba(92,92,92,1.00);
+        -webkit-box-shadow: 5px 5px 5px 2px rgba(43,35,36,1.00);
+        box-shadow: 5px 5px 5px 2px rgba(43,35,36,1.00);
+        text-align:center;  
+        }
+    </style>
+    <script>
+        window.addEventListener("load",()=>{inicio();})
+
+        function inicio(){
+            ponmeses();
+            ponaños();
+        }
+
+        function ponaños(){//funcion que nos rellena el cuadrado de los años//
+            var destino= document.getElementById("divaños");//hacemos referencia al div//
+            var fecha = new Date();//fecha del sistema//
+            var anno=fecha.getFullYear();//te da el año con 4 cifras//
+            
+            //nos va a ir creando primero el select y luego las opciones del select que iran rellenando el cuadrado de los años//
+            var annos=document.createAttribute("select");
+            annos.setAttribute("id","cbaños");
+            //metemos annos en destino aka divaños//
+            destino.appendChild(annos);
+            for(var i=0;i<=50;i++){
+                //creamos las opciones del select, las damos contenido aka value y las metemos en annos//
+                var op=document.createElement("option");
+                op.setAttribute("value",anno+i);//+i para que valla sumando años cada iteracion//
+                op.text=anno+i;
+                annos.appendChild(op);
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+
+       <h2>Ejercicio Javascript: calendario</h2>
+       <div id="parametros">
+        <div class="izq" id="divaños"> </div>
+        <div class="der" id="divmeses"> </div>
+        <div style="clear: both;"> </div>
+       </div>
+    </div>
+    <div id="calendario"></div>
+    <div id="pie"></div>
+    <script>$("#pie").load(pie.html);</script>
+</body>
+</html>
