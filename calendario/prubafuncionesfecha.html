@@ -8,8 +8,10 @@
 
 <body>
     <script>
-        var fecha= new Date(2024,1,1);
-        var mes=fecha.getMonth(); //numero del mes que va de 0 a 11//
+        var anno=parseInt(prompt("dime el año"));
+        var mes=parseInt(prompt("dime el mes")); //numero del mes que va de 0 a 11//
+        var fecha= new Date(anno,mes,1);
+        var mes=fecha.getMonth();
         while(fecha.getMonth()==mes){
             //te escribe el dia, el mes y el año//
             document.write(fecha.getDate()+"-"+fecha.getMonth()+"-"+fecha.getFullYear()+"<br>");
