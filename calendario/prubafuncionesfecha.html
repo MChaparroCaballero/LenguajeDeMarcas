@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var fecha= new Date(2024,1,1);
+        var mes=fecha.getMonth(); //numero del mes que va de 0 a 11//
+        while(fecha.getMonth()==mes){
+            //te escribe el dia, el mes y el año//
+            document.write(fecha.getDate()+"-"+fecha.getMonth()+"-"+fecha.getFullYear()+"<br>");
+            //te va sumando a la fecha 1 dia//
+            fecha.setDate(fecha.getDate()+1);
+        }
+    </script>
+
+</body>
+</html>
