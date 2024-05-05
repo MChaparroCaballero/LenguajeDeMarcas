@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #marco{
+            width: 400px;
+            height: 100%;
+            margin: 20px auto 0px auto;
+            padding: 10px;
+            line-height: 57px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var n=parseInt(prompt("¿De cuantas parejas quieres el juego?"));
+        var matriz=new Array(n*2);
+        var m;
+
+
+        //creamos la matriz y la rellenamos de ceros//
+
+        for(let i=0;i<matriz.length;i++){
+            matriz[i]=0;
+        };
+
+
+       //insertamos las parejas en la matriz//
+       
+        for (let i=1;i<=n;i++) {
+			for (let j=1;j<=2;j++) {
+				while (true) {
+					m = alea(0,matriz.length-1);
+					if (matriz[m]==0) {
+						matriz[m]=i;
+						break;
+					}
+				}
+
+			}
+		}
+
+    
+        //mostramos las parejas//
+        for (let i=0; i<matriz.length;i++) {
+			document.write("Posicion="+i+"-------->"+matriz[i]+"<br>");
+		}
+
+        function alea(li, ls){
+            return parseInt (Math.random()*(ls-li+1))+li;
+        }
+
+        
+
+        function inicial(){ /*manipulamos el estilo del elemento deopendiendo de lo que dan las otras funciones, oseal el tamañao del div*/
+        const y=100;
+        /*destino es el marco*/
+        var destino=document.getElementById("marco");
+        destino.style.width=((n*2)*y)+"px";
+        for(i=1;i<(n*2);i++)ponimagen(destino,"mumero_"+i,y);
+        /*donde las ponemos? en destino, como las llamamos imagen_ osea id hasta i con tamaño de y osea ancho*/
+  
+     }
+
+        function ponimagen(des,id,ancho){
+        for(let i=0;i<(n*2);i++){
+        var elem=document.createElement("img");
+        elem.setAttribute("src","./img/numeros/fondo.jpg");
+        elem.setAttribute("width",ancho);
+        elem.setAttribute("height",ancho);
+        elem.setAttribute("id",id);
+        des.appendChild(elem);
+            }
+        }
+
+        window.addEventListener("load",()=>{ inicial();  });
+    </script>
+
+    <div id="marco"></div>
+</body>
+</html>

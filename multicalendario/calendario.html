@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/estilo.css">
+    
+   
+    </style>
+    <script>
+        window.addEventListener("load",()=>{inicio();})
+        var semana=["L","M","X","J","V","S","D"];
+        var arrayMeses=["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
+        
+        function inicio(){
+            
+            ponaños();
+        }
+
+        function cabecera(vmes){
+        
+            var cadena="";
+            cadena+="<CAPTION> "+arrayMeses[vmes]+ "</CAPTION>";
+            cadena +="<thead>";
+                cadena+="<tr class='semana'>";
+                    for(var i=0;i<semana.length;i++){
+                        cadena+="<th class='dia'> "+ semana[i] +"</th>";
+                    }
+                    
+                cadena+="</tr>";
+            cadena +="</thead>";
+            return cadena;
+        }
+
+    
+
+        function ponaños(){//funcion que nos rellena el cuadrado de los años//
+           
+            var destino=document.getElementById("divaños");
+            var fecha=new Date();  //Fecha del sistema
+            var anno=fecha.getFullYear(); //te da el año con 4 cifras//
+ 
+             //nos va a ir creando primero el select y luego las opciones del select que iran rellenando el cuadrado de los años//
+           
+            var annos=document.createElement("select");
+            annos.setAttribute("id","cbaños");
+             //metemos annos en destino aka divaños//
+            destino.appendChild(annos);
+            annos.addEventListener("change",()=>{cambio();})
+ 
+            for(var i=0;i<=50;i++){//de aqui ha 50 años//
+
+                //creamos las opciones del select, las damos contenido aka value y las metemos en annos//
+                var op=document.createElement("option");
+                op.setAttribute("value",anno+i);//+i para que valla sumando años cada iteracion//
+                op.text=anno+i;//muestra el texto//
+                annos.appendChild(op);
+            }
+ 
+        }
+
+
+        function cambio(){
+    var anno = document.getElementById("cbaños").value;
+    var container = document.getElementById("calendario");
+    
+
+    var mesesHTML = ""; // Variable para almacenar el HTML de todos los meses, como inicio va a ser por mes, necesitamos otra a la que pasar todos//
+
+    for (var mes = 0; mes < 12; mes++) { // Bucle para recorrer todos los meses del año//
+        //ponemos dos div en inicio porque uno es el de por mes mientras que el otro es para que este dentro de el div principal y asi centrarlo//
+        var inicio = "<div class='contenedorSECUNDARIO'><div class='mesc'><table border=0.5 align='center'";
+        inicio += cabecera(mes);//nos hacemos la cabecera del mes//
+
+        //empezamos desde el dia 1 y obtenemos el dia de la semana del dia 1 y de ahi vamos restando//
+        var fecha = new Date(anno, mes, 1);
+        var nweek = fecha.getDay();
+        nweek--;
+
+        //esto es para que correspondan las posiciones del array de dias de la semana con los que mostramos, vamos que empiece en lunes en vez de domingo//
+        if (nweek == -1) nweek = 6;
+
+        var cadena = "<tbody><tr>";
+
+        for (var i = 1; i <= nweek; i++) cadena += "<td>&nbsp;</td>";
+
+        while (fecha.getMonth() == mes) {
+            cadena += "<td class='diaMES'>" + fecha.getDate() + "</td>";
+
+            if (nweek == 6) cadena += "</tr><tr>";
+
+            fecha.setDate(fecha.getDate() + 1);
+            nweek = fecha.getDay();
+            nweek--;
+
+            if (nweek == -1) nweek = 6;
+        }
+
+        cadena += "</tr></tbody>";
+        inicio += cadena;
+        inicio += "</table></div></div>";
+
+        mesesHTML += inicio; // Agregar el calendario al HTML de todos los meses
+    }
+
+    container.innerHTML = "<div class='contenedorPrincipal'>" + mesesHTML + "</div>"; // Agregar todos los meses al contenedor principal
+}
+
+       
+           
+       
+
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+
+       <h2>Ejercicio Javascript: calendario</h2>
+       <div id="parametros">
+        <div class="izq" id="divaños"> </div>
+        <div style="clear: both;"> </div>
+       </div>
+    </div>
+    <div id="calendario"></div>
+    <div id="pie"></div>
+    <script>$("#pie").load(pie.html);</script>
+</body>
+</html>
