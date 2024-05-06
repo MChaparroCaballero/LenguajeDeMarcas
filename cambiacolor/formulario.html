@@ -22,7 +22,6 @@
         width: 500px;
         height: 300px;
         margin: 20px auto;
-        background-color: rgb(245, 246, 247);
         border-radius: 15px;
     }
     </style>
@@ -30,21 +29,91 @@
 
 </head>
 <body>
-    <script>
+    <script> 
 
         function inicio(){
-            let destino= document.getElementById("srojo");
-            for (let i=0; i<=255;i++){
+            //iteramos por cada valor del array aka por cada posible rango y llamamos a la funcion menu para ajustar los valores//
+            ["rojo","verde","azul","alfa"].forEach((c)=>{menu(c);});
+        }
+        
+
+        function menu(c){
+            //pasamos el rango que es, generico, y le obtenemos su elemento contenedor aka destino aka select, creamos una variable del limite superior, y en otra variable referenciamos al elemento input//
+            let destino=document.getElementById("s"+c);
+            let id2=document.getElementById(c);
+            var ls;
+            //si el rango que hemos metido es alfa, abrimos if y su limite superior de rango sera 10 sino sera 255//
+            if(c=="alfa"){
+             ls=10;
+            }else{
+            ls= 255;
+            }
+
+            //llamamos a la funcion crearopciones que va a crear las opciones de cada select al cual le metemos el select que es con destino, limite inferior 0 para todos, limite superior correspondiente y el id de que rango es porque la siguiente funcion lo necesitara para hacer una cosa o otra//
+            crearopciones(destino,0,ls,c);
+            //que cuando cada select cambien nos llame a la funcion cambiarango para actualizar el input rango, pasandole el id de que input rango es y el id del select//
+            destino.addEventListener('change',()=>{cambiarango(c,destino);});
+            
+            //esto es para que cuando cambie el rango nos cambio los colores llamando a su funcion correspondiente//
+            id2.addEventListener('input',()=>{cambiarcolores();});
+            
+        }
+
+
+        //el destino es des osea id del select, li es el limite inferior osea 0, ls es el limite superior y posicion es la c osea la id de que input rango es //
+        function crearopciones(des,li,ls,posicion){
+            //crea un bucle que va desde el limite inferior aka 0 hasta el superior que recordemos que podra ser o 10 o 255 dependiendo de pasos anteriores//
+            for (let i=li; i<=ls;i++){
+                //creamos una opcion por iteracion el valor de la opcion sera la i en esa iteracion y el texto igual//
                 var op=document.createElement('option');
                 op.value=i;
                 op.text=i;
-                destino.appendChild(op);
+                
+                
+                //metemos las opcion creada en el destino aka el select correspondiente//
+                des.appendChild(op);
                 
                 
             }
         }
         
+        //una vez creadas las opciones hacemos los rangos interactivos, al mete el id del rango que es y de la select correspondiente//
         
+        function cambiarango(idrango,idselect){
+        //primero en una nueva variable valor le decimos que es igual al valor elegido en el select//
+        let valor=idselect.value;
+        //despues le decimos que el valor del rango sera igual al valor de la variable anterior aka el valor de la select//
+        document.getElementById(idrango).value=valor;
+        //por ultimo llamamos a la funcion cambiar colores de nuevo para que pueda cambiar directamente el color cuando eliges una opcion de la select//
+        cambiarcolores();
+        }
+
+        function cambiarcolores(){
+
+            //hacemos referencia al elemento contenedor osea el div de colores//
+            let destino=document.getElementById("colores");
+
+            //en cuatro variables distintas metemos el valor obtenido de cada input rango pasandolo a int salvo el de opacidad que ese funciona con decimales//
+            let r=parseInt(document.getElementById("rojo").value);
+            let v=parseInt(document.getElementById("verde").value);
+            let a=parseInt(document.getElementById("azul").value);
+
+            //importante la opacidad de un fondo va de 0 a 1 asique le tenemos que hacer un float y dividir el valor obtenido del rango entre 10 para que sea del 0 al 1//
+            let f=parseFloat((document.getElementById("alfa").value)/10);
+
+            //modificamos el fondo del div para que sea el de los colores obtenidos//
+            destino.style.backgroundColor="rgba("+r+","+v+","+a+","+f+")";
+
+            //actualizamos el valor de las select para que cuando cambiemos los colores desliza los rango se reflejen los valores en las opciones del select correspondiente//
+            document.getElementById("srojo").value = r;
+            document.getElementById("sverde").value = v;
+            document.getElementById("sazul").value = a;
+
+            //multiplicamos el valor de la variable f * 10 para que cuando la devuelva al select cambie entre las opciones a la correspondiente ya que f esta en decimales pero en nuestras opciones solo aparecen enteros asique es para que corresponda el select//
+            document.getElementById("salfa").value = f*10;
+        }
+
+            //que al cargar la pagina llame a la funcion inicio//
             window.addEventListener('load',()=>{inicio();});
         </script>
     <div id="marco">
