@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practica cambia color</title>
+
+    <style>
+
+    #marco{
+        border: gold ridge 5px;
+        width: 500px;
+        height: 300px;
+        margin: 20px auto;
+        background-color: rgb(245, 246, 247);
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    #colores{
+        border: gold ridge 5px;
+        width: 500px;
+        height: 300px;
+        margin: 20px auto;
+        background-color: rgb(245, 246, 247);
+        border-radius: 15px;
+    }
+    </style>
+
+
+</head>
+<body>
+    <script>
+
+        function inicio(){
+            let destino= document.getElementById(srojo);
+            for (let i=0; i<=255;i++){
+                var op=document.createElement('option');
+                op.value(i);
+                op.text(i);
+                destino.appendChild(op);
+                
+                
+            }
+        }
+        
+        
+            addEventListener('load',()=>{inicio();});
+        </script>
+    <div id="marco">
+        <div>
+            <label for="rojo">rojo&nbsp;&nbsp;&nbsp; &nbsp; </label>
+                <input type="range" id="rojo" min="0" max="255" value="255">
+                <select id="srojo"></select>
+        
+        </div>
+        <div>
+            <label for="verde">verde&nbsp;&nbsp;&nbsp; &nbsp; </label>
+                <input type="range"  id="verde" min="0" max="255" value="0">
+                <select id="sverde"></select>
+        
+        </div>
+        <div>
+            <label for="azul">azul&nbsp;&nbsp;&nbsp; &nbsp; </label>
+                <input type="range"  id="azul" min="0" max="255" value="0">
+                <select id="sazul"></select>
+        
+        </div>
+        <div>
+            <label for="alfa">Opacidad&nbsp;&nbsp;&nbsp; &nbsp; </label>
+                <input type="range"  id="alfa" min="0" max="10" step="1">
+                <select id="salfa"></select>
+        
+        </div>
+    </div>
+    <div id="colores"></div>
+</body>
+</html>
