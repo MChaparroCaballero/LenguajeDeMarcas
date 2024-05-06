@@ -33,11 +33,11 @@
     <script>
 
         function inicio(){
-            let destino= document.getElementById(srojo);
+            let destino= document.getElementById("srojo");
             for (let i=0; i<=255;i++){
                 var op=document.createElement('option');
-                op.value(i);
-                op.text(i);
+                op.value=i;
+                op.text=i;
                 destino.appendChild(op);
                 
                 
@@ -45,7 +45,7 @@
         }
         
         
-            addEventListener('load',()=>{inicio();});
+            window.addEventListener('load',()=>{inicio();});
         </script>
     <div id="marco">
         <div>
