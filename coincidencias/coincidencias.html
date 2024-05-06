@@ -8,10 +8,28 @@
         #marco{
             width: 400px;
             height: 100%;
-            margin: 20px auto 0px auto;
+            margin: 20px auto;
             padding: 10px;
             line-height: 57px;
         }
+        #contenedor{
+            margin: auto;
+            justify-content: center;
+            width: 400px;
+            height: 100%;
+        }
+
+        #contador{
+            background-color: red;
+            color: white;
+            text-align: center;
+            font-size: xxx-large;
+            width: 50px;
+            height: 100%;
+            margin: auto;
+
+        }
+
     </style>
 </head>
 <body>
@@ -19,6 +37,8 @@
         var n=parseInt(prompt("¿De cuantas parejas quieres el juego?"));
         var matriz=new Array(n*2);
         var m;
+        var total= n*2;
+        var turn=true;
 
 
         //creamos la matriz y la rellenamos de ceros//
@@ -43,12 +63,7 @@
 			}
 		}
 
-    
-        //mostramos las parejas//
-        for (let i=0; i<matriz.length;i++) {
-			document.write("Posicion="+i+"-------->"+matriz[i]+"<br>");
-		}
-
+        //mostramos las parejas  for (let i=0; i<matriz.length;i++) { document.write("Posicion="+i+"-------->"+matriz[i]+"<br>");}//
         function alea(li, ls){
             return parseInt (Math.random()*(ls-li+1))+li;
         }
@@ -56,29 +71,44 @@
         
 
         function inicial(){ /*manipulamos el estilo del elemento deopendiendo de lo que dan las otras funciones, oseal el tamañao del div*/
-        const y=100;
-        /*destino es el marco*/
-        var destino=document.getElementById("marco");
-        destino.style.width=((n*2)*y)+"px";
-        for(i=1;i<(n*2);i++)ponimagen(destino,"mumero_"+i,y);
+        ponimagen();
+        jugar();
         /*donde las ponemos? en destino, como las llamamos imagen_ osea id hasta i con tamaño de y osea ancho*/
   
      }
 
-        function ponimagen(des,id,ancho){
-        for(let i=0;i<(n*2);i++){
+        function ponimagen(){
+        const y=100;
+        var destino=document.getElementById("marco");
+        destino.style.width=((n*2)*y)+"px";
+        var con=0;
+        for(let i=0;i<total;i++){
         var elem=document.createElement("img");
         elem.setAttribute("src","./img/numeros/fondo.jpg");
-        elem.setAttribute("width",ancho);
-        elem.setAttribute("height",ancho);
-        elem.setAttribute("id",id);
-        des.appendChild(elem);
-            }
+        elem.setAttribute("width",y);
+        elem.setAttribute("height",y);
+        elem.setAttribute("id",i);
+        destino.appendChild(elem);
+        con++;
+        if(con==4){
+            destino.innerHTML += "<br>";
+            con=0;
+                }
+            } 
+        }
+
+        function jugar(){
+             
         }
 
         window.addEventListener("load",()=>{ inicial();  });
     </script>
 
-    <div id="marco"></div>
+    <div id="contenedor">
+        
+            <div id="marco"></div>
+            <div id="contador">0</div>
+    </div>
+    
 </body>
 </html>
