@@ -63,22 +63,22 @@
         var destino=document.getElementById("marco");
         destino.style.width=((n*2)*y)+"px";
         var con=0;
+        let ori=0;
         for(let i=0;i<total;i++){
         var elem=document.createElement("img");
-        elem.width=y;
-        elem.height=y;
-        elem.id=i;
-        elem.src="./img/numeros/fondo.jpg";
+        elem.setAttribute("width",y);
+        elem.setAttribute("height",y);
+        elem.setAttribute("id","imagen_"+i);
+        elem.setAttribute("src","./img/numeros/fondo.jpg");
         destino.appendChild(elem);
+        ori=i;
         con++;
         if(con==4){
             destino.innerHTML += "<br>";
             con=0;
                 }   
                 
-            elem.addEventListener("dblclick", function() {
-            cambio(this); // Pasar la imagen actual como parámetro
-            });
+            elem.addEventListener("dblclick", ()=> {cambio(ori);});
             } 
         }
 
@@ -110,11 +110,12 @@
            
 
         function cambio(imagendefecto){ 
-            var origen=imagendefecto.id;
+            var origen=document.getElementById("imagen_"+imagendefecto);
             let contador = 0;
             var imagenesAcomparar = new Array(2);
             //prueba//
-            imagendefecto.src= "./img/numeros/numero_1.png"
+            origen.src="./img/numeros/numero_1.png"
+            
         
 /*como deberia ser:
             if (contador == 0) {
