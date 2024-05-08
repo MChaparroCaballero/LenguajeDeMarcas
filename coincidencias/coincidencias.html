@@ -48,8 +48,7 @@
 
         
 
-        function inicial(){ /*manipulamos el estilo del elemento deopendiendo de lo que dan las otras funciones, oseal el tamañao del div*/
-        ponimagen();
+        function inicial(){    ponimagen();
         cambio();
         
         
@@ -58,36 +57,34 @@
      }
 
         function ponimagen(){
+     /*manipulamos el estilo del elemento deopendiendo de lo que dan las otras funciones, oseal el tamañao del div*/
+     
         const y=100;
         var destino=document.getElementById("marco");
         destino.style.width=((n*2)*y)+"px";
         var con=0;
         for(let i=0;i<total;i++){
         var elem=document.createElement("img");
-        elem.setAttribute("src","./img/numeros/fondo.jpg");
-        elem.setAttribute("width",y);
-        elem.setAttribute("height",y);
-        elem.setAttribute("id",i);
-        elem.addEventListener("onclick", () => { cambio(elem);});
+        elem.width=y;
+        elem.height=y;
+        elem.id=i;
+        elem.src="./img/numeros/fondo.jpg";
         destino.appendChild(elem);
         con++;
         if(con==4){
             destino.innerHTML += "<br>";
             con=0;
-                } 
+                }   
                 
-                
-                
+            elem.addEventListener("dblclick", function() {
+            cambio(this); // Pasar la imagen actual como parámetro
+            });
             } 
-         
-       
         }
 
+        //matriz con los valores respuesta//
         var matriz=new Array(total);
-        function valor(){
         var m;
-        var turn=true;
-
         //creamos la matriz y la rellenamos de ceros//
 
         for(let i=0;i<matriz.length;i++){
@@ -108,34 +105,48 @@
 
 			}
 		}
-    }
 
-            let contador = 0;
-            let imagenesAcomparar = new Array(2);
 
-        function cambio(imagendefecto){
            
-            let indice= imagendefecto.getAtributte("id");
+
+        function cambio(imagendefecto){ 
+            var origen=imagendefecto.id;
+            let contador = 0;
+            var imagenesAcomparar = new Array(2);
+            //prueba//
+            imagendefecto.src= "./img/numeros/numero_1.png"
+        
+/*como deberia ser:
             if (contador == 0) {
                 imagenesAcomparar[0] = imagendefecto;
-                imagendefecto.setAttribute("src", "./img/numeros/numero_" + matriz[indice] + ".png");
+                imagendefecto.setAttribute("src", "./img/numeros/numero_" + matriz[origen] + ".png");
                 contador++;
             } else if (contador == 1) {
                 imagenesAcomparar[1] = imagendefecto;
-                imagendefecto.setAttribute("src", "./img/numeros/numero_" + matriz[indice] + ".png");
+                imagendefecto.setAttribute("src", "./img/numeros/numero_" + matriz[origen] + ".png");
                 setTimeout(() => { compararImagenes() }, 750);
                 contador = 0;
             }
-        
+*/
     }
+    
         /******************************************************************************/
+       
         let comprobarFinal = 0;
         function compararImagenes() {
             if (imagenesAcomparar[0].getAttribute("src") != imagenesAcomparar[1].getAttribute("src")) {
                 imagenesAcomparar[0].setAttribute("src", "./img/numeros/fondo.jpg");
                 imagenesAcomparar[1].setAttribute("src", "./img/numeros/fondo.jpg");
+                imagenesAcomparar = [];
             } else {
                 comprobarFinal++;
+                var contar=document.getElementById("contador");
+                contar.innerHTML=comprobarFinal;
+                imagenesAcomparar[0].removeEventListener("dblclick", () => { cambio(imagenesAcomparar[0]); });
+                imagenesAcomparar[1].removeEventListener("dblclick", () => { cambio(imagenesAcomparar[1]); });
+
+        // Reinicio el arreglo de imágenes a comparar
+        imagenesAcomparar = [];
             }
             if (comprobarFinal == n) {
                 alert("HAS GANADO");
