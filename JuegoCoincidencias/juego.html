@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+         background-color: aqua;
+        }
+         #marco{
+             width: 400px;
+             height: 100%;
+             margin: 20px auto;
+             padding: 10px;
+             line-height: 57px;
+         }
+         #contenedor{
+             margin: auto;
+             justify-content: center;
+             width: 400px;
+             height: 100%;
+         }
+ 
+         #contador{
+             background-color: red;
+             color: white;
+             text-align: center;
+             font-size: xxx-large;
+             width: 50px;
+             height: 100%;
+             margin: auto;
+ 
+         }
+ 
+     </style>
+    
+      <script>
+        
+        var n=parseInt(prompt("¿De cuantas parejas quieres el juego?"));
+        var total= n*2;
+         //matriz con los valores respuesta//
+         var matriz=new Array(total);
+         var m;
+         //matriz donde guardamos las imagenes creadas//
+         var imagenes = [];
+
+         //matriz donde guardamos las imagenes elegodas `por el usuario//
+         var imagenesElegidas =new Array(2); // Array para almacenar las imágenes seleccionadas
+        //un contador de cuantas llevamos elegidas//
+         var contar=0;
+
+           //creamos la matriz y la rellenamos de ceros//
+           for(let i=0;i<matriz.length;i++){
+               matriz[i]=0;
+           };
+   
+          //insertamos las parejas en la matriz//
+           for (let i=1;i<=n;i++) {
+               for (let j=1;j<=2;j++) {
+                   while (true) {
+                       m = alea(0,matriz.length-1);
+                       if (matriz[m]==0) {
+                           matriz[m]=i;
+                           break;
+                       }
+                   }
+   
+               }
+           }
+   
+   
+           //mostramos las parejas  for (let i=0; i<matriz.length;i++) { document.write("Posicion="+i+"-------->"+matriz[i]+"<br>");}//
+           function alea(li, ls){
+               return parseInt (Math.random()*(ls-li+1))+li;
+           }
+   
+           
+          
+           function inicial(){   
+            ponimagen();
+        }
+   
+           function ponimagen(){
+           const y=100;
+           var destino=document.getElementById("marco");
+            /*donde las ponemos? en destino, como las llamamos imagen_ osea id hasta i con tamaño de y osea ancho*/
+           destino.style.width=((n*2)*y)+"px";
+           var con=0;
+           for(let i=0;i<total;i++){
+           var elem=document.createElement("img");
+           elem.setAttribute("width",y);
+           elem.setAttribute("height",y);
+           elem.setAttribute("id",i);
+           elem.setAttribute("src","./img/numeros/fondo.jpg");
+           destino.appendChild(elem);
+           con++;
+           if(con==4){
+               destino.innerHTML += "<br>";
+               con=0;}   
+           } 
+           
+           //para que nos pase todas las guardamos en una matriz//
+           for(let i=0;i<total;i++){
+               imagenes[i]=document.getElementById(i);
+           }
+           
+              
+
+               //for each para que por item imagen nos pase el indice de iteracion a la funcion cambio y el indice es igual que la id//
+               imagenes.forEach((imagen, index) => {
+               imagen.addEventListener("dblclick", function(){ cambio(index);});
+               });
+               
+           }
+   
+          
+   
+              
+   
+           function cambio(index){ 
+            //variable con la que nos referimos a la posicion de la matriz con las elegidas por el usuario//     
+            let p=0;
+               /*pruebaj
+               imagenes[indice].src="./img/numeros/numero_1.png";*/
+
+               //cambiamos el src de cada imagen por la que tendria que ser segun las respuesxtas//
+                imagenes[index].src = "./img/numeros/numero_" + matriz[index] + ".png"; // Cambia la imagen al hacer clic
+                
+                //a imagenes elegidas le pasamos directamente el objeto entero con el indice de que imagen es//
+                imagenesElegidas[p] = imagenes[index];
+                //actualizamos contar para que sepa que solo puede añadir una mas//
+                contar=contar+1;
+                //actualizamos p, como no puedo meterlo en un for porque me pediria todas de una hago esto para que hiciero como un for pero sin for//
+                p=p+1;
+                if(contar==2) {
+                    //si tiene ya dos elegidas las enviamos a compararlas//
+                setTimeout(() => compararImagenes(imagenesElegidas), 750);
+
+                //reiniciamos los contadores para que cuando terminemos de compaar podamos cojer otras dos//
+                contar=0;
+                p=0;
+                
+            }
+
+            /*
+               if (contador == 0) {
+                  
+                   imagenes[indice].src="./img/numeros/numero_" +matriz[indice] +".png";
+                   imageneselegidas[0] =imagenes[indice]
+                   contador++;
+               } else if (contador == 1) {
+                   
+                   imagenes[indice].src="./img/numeros/numero_" +matriz[indice] +".png";
+                   imageneselegidas[1] = imagenes[indice]
+                   setTimeout(() => { compararImagenes(imageneselegidas) }, 750);
+                   contador = 0;
+               }
+               */
+   
+       }
+       
+       
+           /******************************************************************************/
+          
+           var comprobarFinal = 0;
+           function compararImagenes(coleccion) {
+            alert("papa");
+
+            //referenciamos a las imagenes elegidas//
+            //obtenemos los indices aka las id//
+            var imagenComparar1 = document.getElementById(coleccion[0].index);
+            var  imagenComparar2= document.getElementById(coleccion[1].index);
+           
+           
+            /*
+            var imagenComparar1 = document.getElementById(primerIndice);
+            var imagenComparar2 = document.getElementById(segundoIndice);
+            */
+
+            
+            // Obtenemos el src de las imágenes para comparar//
+                var src1 = imagenComparar1.src;
+                var src2 = imagenComparar2.src;
+          
+               if (src1!=src2){
+                //si son diferentes las dos veuelven a ser fondo//
+                imagenComparar1.src="./img/numeros/fondo.jpg";
+                imagenComparar2.src="./img/numeros/fondo.jpg";
+                /*
+                imagenes[primerIndice].src="./img/numeros/fondo.jpg";
+                imagenes[segundoIndice].src="./img/numeros/fondo.jpg";
+                imageneselegidas[0].getAttribute("src") != imageneselegidas[1].getAttribute("src")) {
+                imagenesAcomparar[0].setAttribute("src", "./img/numeros/fondo.jpg");
+                imagenesAcomparar[1].setAttribute("src", "./img/numeros/fondo.jpg");
+                */
+                  
+               } else {
+                //sino sumamos a comprovar que nos cuenta las parejas encontradas//
+                   comprobarFinal++;
+                   //referenciamos el destino de donde vamos a poner las parejas encontradas//
+                   var parejasEncontradas=document.getElementById("contador");
+                   parejasEncontradas.appendChild(comprobarFinal);
+                  // parejasEncontradas.innerHTML=comprobarFinal;//
+                   imagenComparar1.removeEventListener("dblclick", () => { cambio(imagenComparar1.id); });
+                   imagenComparar2.removeEventListener("dblclick", () => { cambio(imagenComparar2.id); });
+   
+         
+          
+          
+               }
+               
+               if (comprobarFinal == n) {
+                   alert("HAS GANADO");
+               }
+           }
+   
+   
+           window.addEventListener("load",()=>{ inicial();  });
+       </script>
+   
+</head>
+<body>
+    <div id="contenedor">
+        
+        <div id="marco"></div>
+        <div id="contador">0</div>
+</div>
+</body>
+</html>
