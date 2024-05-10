@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AMORTIZACION</title>
     <style>
     #marco,#tablaAmortizacion{
     margin:20px auto;
@@ -83,7 +83,16 @@
             /****************************************************************************************/
             function cambioSelect(origen){
                 let op='s'+origen.id;
-                document.getElementById(op).value= op=='scapital' ? origen.value*1000 : origen.value;
+                let destino=documen.getElementById(op);
+                let n=destino.options.length;
+                let busco=op=='scapital' ? origen.value*1000 : origen.value;
+
+                for(let i=0;i<n;i++){
+                        if(destino.options[i].value==busco){
+                            destino.selectedIndex=i;
+                            break;
+                        }
+                }
                 calculaMensualidad();
             }
             /****************************************************************************************/
