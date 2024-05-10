@@ -103,14 +103,16 @@
            //para que nos pase todas las guardamos en una matriz//
            for(let i=0;i<total;i++){
                imagenes[i]=document.getElementById(i);
+               imagenes[i].addEventListener("dblclick", function(){ cambio(i);});
            }
            
               
 
-               //for each para que por item imagen nos pase el indice de iteracion a la funcion cambio y el indice es igual que la id//
+               /*for each para que por item imagen nos pase el indice de iteracion a la funcion cambio y el indice es igual que la id//
                imagenes.forEach((imagen, index) => {
                imagen.addEventListener("dblclick", function(){ cambio(index);});
                });
+               */
                
            }
    
