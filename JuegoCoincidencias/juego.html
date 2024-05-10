@@ -47,7 +47,7 @@
          var imagenesElegidas =new Array(2); // Array para almacenar las imágenes seleccionadas//
         //un contador de cuantas llevamos elegidas//
         var contar=0; 
-        var turno="true";//variable de que es clickleable//
+        var turno=true;//variable de que es clickleable//
         //variable donde contamos las parejas encontradas//
         var comprobarFinal = 0;
 
@@ -113,6 +113,7 @@
            function cambio(origen,index){ 
                //cambiamos el src de cada imagen por la que tendria que ser segun las respuesxtas//
                 origen.src = "./img/numeros/numero_" + matriz[index] + ".png";//Cambia la imagen al hacer clic//
+                
                 if(contar<2)
                 imagenesElegidas[contar] = origen.id;
                 //a imagenes elegidas le pasamos directamente el id del objeto//
