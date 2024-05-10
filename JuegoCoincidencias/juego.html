@@ -103,7 +103,7 @@
            //para que nos pase todas las guardamos en una matriz//
            for(let i=0;i<total;i++){
                imagenes[i]=document.getElementById(i);
-               imagenes[i].addEventListener("dblclick", function(){ cambio(i);});
+               imagenes[i].addEventListener("dblclick", function(){ cambio(imagenes[i],i);});
            }
            
               
@@ -118,30 +118,32 @@
    
           
    
-              
+           var contar=0; 
    
-           function cambio(index){ 
+           function cambio(origen,index){ 
             //variable con la que nos referimos a la posicion de la matriz con las elegidas por el usuario//     
-            let p=0;
+
                /*pruebaj
                imagenes[indice].src="./img/numeros/numero_1.png";*/
 
                //cambiamos el src de cada imagen por la que tendria que ser segun las respuesxtas//
-                imagenes[index].src = "./img/numeros/numero_" + matriz[index] + ".png"; // Cambia la imagen al hacer clic
+                origen.src = "./img/numeros/numero_" + matriz[index] + ".png"; // Cambia la imagen al hacer clic
                 
                 //a imagenes elegidas le pasamos directamente el objeto entero con el indice de que imagen es//
-                imagenesElegidas[p] = imagenes[index];
+                
+                if(contar<2)
+                imagenesElegidas[contar] = origen;
                 //actualizamos contar para que sepa que solo puede añadir una mas//
-                contar=contar+1;
+                contar++;
                 //actualizamos p, como no puedo meterlo en un for porque me pediria todas de una hago esto para que hiciero como un for pero sin for//
-                p=p+1;
+                
                 if(contar==2) {
                     //si tiene ya dos elegidas las enviamos a compararlas//
                 setTimeout(() => compararImagenes(imagenesElegidas), 750);
 
                 //reiniciamos los contadores para que cuando terminemos de compaar podamos cojer otras dos//
                 contar=0;
-                p=0;
+                
                 
             }
 
@@ -167,12 +169,12 @@
           
            var comprobarFinal = 0;
            function compararImagenes(coleccion) {
-            alert("papa");
+            alert("llega");
 
             //referenciamos a las imagenes elegidas//
             //obtenemos los indices aka las id//
-            var imagenComparar1 = document.getElementById(coleccion[0].index);
-            var  imagenComparar2= document.getElementById(coleccion[1].index);
+            var imagenComparar1 = document.getElementById(coleccion[0]);
+            var  imagenComparar2= document.getElementById(coleccion[1]);
            
            
             /*

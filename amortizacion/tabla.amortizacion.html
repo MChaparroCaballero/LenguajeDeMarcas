@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #marco,#tablaAmortizacion{
+    margin:20px auto;
+    padding: 50px;
+    border:10px gold ridge;
+    border-radius: 25px;
+    width: 350px;
+}
+
+
+    </style>
+    <script>
+
+            /****************************************************************************************/
+            function inicio(){
+                
+                rellenar(document.getElementById("scapital"),150000,3000000,50000);
+                rellenar(document.getElementById("sinteres"),1,6,0.5);
+                rellenar(document.getElementById("saños"),20,75,5);
+                ['capital', 'años', 'interes'].forEach((elemento)=>{
+                    var op=document.getElementById(elemento);
+                    op.addEventListener("input",function(){cambioSelect(op)});
+
+
+                });
+            }
+            /****************************************************************************************/
+            function rellenar(destino,li,ls,inc){
+                for(let i=li;i<=ls;i+=inc){
+                    let op= document.createElement("option");
+                    op.text=i;
+                    op.value=i;
+                    destino.appendChild(op);
+                }
+               destino.addEventListener("change", function(){cambio(destino);})
+            }
+
+            /****************************************************************************************/
+           // Nosotros nos vasamos en estas funciones, y luego las genreelazimaos para hacer las tres en una //
+            /*function rellenarCapital(){
+                var destino=document.getElementById("scapital");
+                for(let i=150000;i<=3000000;i+=50000){
+                    let op= document.createElement("option");
+                    op.text=i;
+                    op.value=i;
+                    destino.appendChild(op);
+                }
+            }
+            /****************************************************************************************/
+            /*function rellenarInteres(){
+                var destino=document.getElementById("sinteres");
+                for(let i=1;i<=6;i+=0.5){
+                    let op= document.createElement("option");
+                    op.text=i;
+                    op.value=i;
+                    destino.appendChild(op);
+                }
+            }
+            /****************************************************************************************/
+            /*function rellenarAños(){
+                var destino=document.getElementById("saños");
+                for(let i=20;i<=75;i+=5){
+                    let op= document.createElement("option");
+                    op.text=i;
+                    op.value=i;
+                    destino.appendChild(op);
+                }
+            }
+            /****************************************************************************************/
+            
+            function cambio(origen){
+               
+                let op=(origen.id).substring(1);
+                document.getElementById(op).value= op=='capital' ? origen.value/1000 : origen.value;
+                calculaMensualidad();
+            }
+            /****************************************************************************************/
+            function cambioSelect(origen){
+                let op='s'+origen.id;
+                document.getElementById(op).value= op=='scapital' ? origen.value*1000 : origen.value;
+                calculaMensualidad();
+            }
+            /****************************************************************************************/
+            function calculaMensualidad(){
+                let vaños=document.getElementById("años").value;
+                let vcapital=parseInt(document.getElementById("capital").value)*1000;
+                let vinteres=parseFloat(document.getElementById("interes").value);
+                mensualidad(vcapital,vinteres,vaños);
+            }
+             /****************************************************************************************/
+            function mensualidad(CAPITAL, IANUAL, AÑOS){
+                let meses= AÑOS*12;
+                let imensual= IANUAL/1200;
+                document.getElementById("mensualidad").innerHTML="Mensualidad: "+((CAPITAL*imensual)/(1+Math.pow(1-imensual,-meses))).toFixed(2);
+            }
+            /****************************************************************************************/
+
+        window.addEventListener("load", ()=>{inicio();});
+    </script>
+</head>
+<body>
+    <div id="marco">
+        <p>credito hipotecario</p>
+        <div>
+            <label for="Capital">Capital&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="range" id="capital" min="150" max="3000" step="50"/>
+            <select id="scapital"></select>
+        </div>
+        <div>
+            <label for="Interes Anual">Interes anual&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="range" id="interes"  min="1" max="6" step="0.5" />
+            <select id="sinteres"></select>
+          </div>
+          <div>
+            <label for="Años">Años&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="range" id="años"  min="20" max="75" step="5" />
+            <select id="saños"></select>
+          </div>
+          <p style="text-align: center" id="mensualidad"></p>
+    
+          
+</div>
+
+</body>
+</html>
