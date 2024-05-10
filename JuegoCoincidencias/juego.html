@@ -133,7 +133,7 @@
                 //a imagenes elegidas le pasamos directamente el objeto entero con el indice de que imagen es//
                 
                 if(contar<2)
-                imagenesElegidas[contar] = origen;
+                imagenesElegidas[contar] = origen.id;
                 //actualizamos contar para que sepa que solo puede añadir una mas//
                 contar++;
                 //actualizamos p, como no puedo meterlo en un for porque me pediria todas de una hago esto para que hiciero como un for pero sin for//
@@ -205,7 +205,7 @@
                    comprobarFinal++;
                    //referenciamos el destino de donde vamos a poner las parejas encontradas//
                    var parejasEncontradas=document.getElementById("contador");
-                   parejasEncontradas.appendChild(comprobarFinal);
+                   parejasEncontradas.innerHTML=comprobarFinal;
                   // parejasEncontradas.innerHTML=comprobarFinal;//
                    imagenComparar1.removeEventListener("dblclick", () => { cambio(imagenComparar1.id); });
                    imagenComparar2.removeEventListener("dblclick", () => { cambio(imagenComparar2.id); });
