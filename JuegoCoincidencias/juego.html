@@ -47,7 +47,6 @@
          var imagenesElegidas =new Array(2); // Array para almacenar las imágenes seleccionadas//
         //un contador de cuantas llevamos elegidas//
         var contar=0; 
-        var turno=true;//variable de que es clickleable//
         //variable donde contamos las parejas encontradas//
         var comprobarFinal = 0;
 
@@ -101,10 +100,10 @@
            con la que tenga en esa posicion*/
                 for(let i=0;i<total;i++){
 
-                    if(turno=="true"){
+                    
                     imagenes[i]=document.getElementById(i);
                     imagenes[i].addEventListener("dblclick", function(){ cambio(imagenes[i],i);});
-                    }
+                    
 
                 }
            }
@@ -143,13 +142,14 @@
                 imagenComparar2.src="./img/numeros/fondo.jpg";
                 } else {
                 //sino sumamos a el contador de parejas encontradas//
+                   
                    comprobarFinal++;
                    //referenciamos el destino de donde vamos a poner las parejas encontradas//
                    var parejasEncontradas=document.getElementById("contador");
                    //escribimos el contador de parejas en pantalla//
                    parejasEncontradas.innerHTML=comprobarFinal;
                     //quitamos la funcion de doble click a las encontradas//
-                    turno="false";
+                    
                } if (comprobarFinal == n) {
                    alert("HAS GANADO");
                }
