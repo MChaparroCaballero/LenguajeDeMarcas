@@ -24,8 +24,8 @@ input {
 }
 #colores{ height: 200px;}
 
-td{
-    text-align: start;
+table td{
+    text-align: right;
 }
 </style>
 <script>
@@ -43,7 +43,7 @@ function crearTabla(){
     let amortizacion_capital;
     let suma_intereses_capital=0;
     let suma_amortizacion_capital=0;
-    var cadena="<table align='center' border=1>";
+    var cadena="<table align='center' border=1 cellppading=10px>";
     cadena +="<tr><th>Meses</th>";
     cadena +="<th>intereses_capital</th>";
     cadena +="<th>amortizacion_capital</th>"; 
@@ -69,32 +69,22 @@ function crearTabla(){
 
         cvivo -=amortizacion_capital;
 
-        if(intereses_capital==null||amortizacion_capital==null||suma_intereses_capital==null||suma_amortizacion_capital==null){
-        cadena +="<tr><th> "+i+"</th>";
-        cadena +="<td> "+" "+"</td>";
-        cadena +="<td> "+" "+"</td>";
-        cadena +="<td> "+" "+"</td>";
-        cadena +="<td> "+" "+"</td>";
-        cadena +="<td> "+" "+"</td>";
-        cadena +="</tr>";
-
-
-        }
     }
     document.getElementById("tablaAmortizacion").innerHTML=cadena;
 
 }
 /**********************************************************************************************/
     function calculaMensualidad(){
+        //pasamos los daos a numericos y decimales//
         vaños=parseInt(document.getElementById("años").value);
         vcapital=parseInt(document.getElementById("capital").value)*1000;
         vinteres=parseFloat(document.getElementById("interes").value);
         //alert(vcapital+" "+vinteres+" "+vaños);
-        mensualidad(vcapital,vinteres,vaños);
-        crearTabla();
+        mensualidad(vcapital,vinteres,vaños);//pasamos los operandos//
+        crearTabla();//creamos la tabla//
     }
 /**********************************************************************************************/
-function mensualidad(CAPITAL,IANUAL,AÑOS){
+function mensualidad(CAPITAL,IANUAL,AÑOS){//la equacion//
     let meses=AÑOS*12;
     let interesMensual=IANUAL/1200;
     vmensualidad=((CAPITAL*interesMensual)/(1-Math.pow(1+interesMensual,-meses))).toFixed(2);
@@ -103,23 +93,32 @@ function mensualidad(CAPITAL,IANUAL,AÑOS){
 /**********************************************************************************************/
 
   function inicio(){
+
+    //rellenamos los select, metiendole limite inferior superior y de cuanto en cuanto incrementa//
     rellenar(document.getElementById("saños"),20,75,5);
     rellenar(document.getElementById("scapital"),150000,3000000,50000);
     rellenar(document.getElementById("sinteres"),1,6,0.5);
 
-    let s1 =document.getElementById("saños")
-    let s2=document.getElementById("scapital");
-    let s3=document.getElementById("sinteres");
-
-    s2.value=150000;
-    s1.value=25;
-    s3.value=3;
-
-    crearTabla();
+    //for each donde para que nos cambio todos los rango y que coincidan con la select//
     ['capital','años','interes'].forEach((elemento)=>{ 
         var op=document.getElementById(elemento); 
         op.addEventListener("input",function(){cambioSelect(op);})
         });
+
+        //valores iniciales del rango a cargar//
+        document.getElementById("capital").value=150;
+        document.getElementById("años").value=25;
+        document.getElementById("interes").value=3;
+
+        //dos en uno cambiamos el valor del select al del rango//
+        ['capital','años','interes'].forEach((elemento)=>{ 
+            var op= document.getElementById(elemento);
+            cambioSelect(op);
+        });
+
+        //para que nos cree una tabla inicial//
+        calculaMensualidad();
+        crearTabla();
   }  
 /**********************************************************************************************/
     function rellenar(destino,li,ls,inc){
@@ -129,6 +128,7 @@ function mensualidad(CAPITAL,IANUAL,AÑOS){
         op.value=i;
         destino.appendChild(op);
     }
+    //por select añadimos el evento de que cambie el rango//
     destino.addEventListener("change",function(){cambio(destino);})
     }
      /**********************************************************************************************/
@@ -148,9 +148,10 @@ function mensualidad(CAPITAL,IANUAL,AÑOS){
      } 
     /**********************************************************************************************/
     function cambio(origen){
-        let op=(origen.id).substring(1);
-        document.getElementById(op).value= op=='capital' ? origen.value/1000  : origen.value;
-        calculaMensualidad();    
+        let op=(origen.id).substring(1);//para obtener la id de que rango es//
+        document.getElementById(op).value= op=='capital' ? origen.value/1000  : origen.value;//si es el de capital por 1000 si no directamente el value//
+        calculaMensualidad(); 
+        //calculamos mensualidad//   
     } 
      /**********************************************************************************************/
 
