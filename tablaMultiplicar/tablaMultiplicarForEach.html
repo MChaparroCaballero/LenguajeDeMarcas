@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    <script>
+
+        var ns=[1,2,3,4,5,6,7,8,9,10];
+
+        function inicio(){
+        var cadena="<table align='center' border=1>";//creamos la tabla//
+        
+        //hacemos la cabecera de operandos//
+        cadena +="<tr><th>&nbsp;</th>";
+        ns.forEach((f)=>{
+            cadena+="<th>"+f+"</th>";
+        });
+        cadena+="</tr>";
+
+        //ponemos los resultados//
+        ns.forEach((f)=>{//por cada valor de f le añadimos una caja en vertical aka fila,y entra otro for
+            cadena+="<tr><th>"+f+"</th>";
+            ns.forEach((c)=>{//por cada valor de c me crea una caja en horizontal que va a ser el valor de f *c//
+                cadena+="<td>"+(f*c)+"</td>";
+            })
+            cadena+="</tr>";//cerramos la fila//
+        });
+        cadena+="</table>";//cerramos tabla//
+        document.write(cadena);//imprimimos//
+    }
+
+
+        window.addEventListener("load",function(){inicio();});
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

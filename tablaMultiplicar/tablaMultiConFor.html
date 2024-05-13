@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    <script>
+
+        var ns=[1,2,3,4,5,6,7,8,9,10];
+
+        function inicio(){
+        var cadena="<table align='center' border=1>";//creamos la tabla//
+        
+        //hacemos la cabecera de operandos//
+        cadena +="<tr><th>&nbsp;</th>";
+
+            for(i=1;i<=ns.length;i++){
+            cadena+="<th>"+i+"</th>";
+            };
+
+        cadena+="</tr>";
+        /********************************************************************/
+           
+        //metemos los valores a la tabla//
+            for(i=1;i<=ns.length;i++){
+                cadena+="<tr><th>"+i+"</th>";//creamos caja a lo vertical osea fila//
+
+                for(j=1;j<=ns.length;j++){
+                    cadena+="<td>"+(i*j)+"</td>";//creamos caja a lo horizontal con el resultado osea columna//
+                }
+                cadena+="</tr>";//cerramos la fila osea la caja a lo vertical//
+            }
+            cadena+="</table>";//cerramos tabla//
+        document.write(cadena);//imprimimos//
+
+        
+    }
+
+
+        window.addEventListener("load",function(){inicio();});
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
