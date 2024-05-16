@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasar a binario</title>
+</head>
+<body>
+<script>
+
+
+function inicio(){
+    var destino = document.getElementById("snumeros");
+    var otro = document.getElementById("numeros");
+   
+    for (let i=0; i<=255;i++){
+        var op=document.createElement("option");
+        op.value=i;
+        op.text=i;
+        destino.appendChild(op);
+        }
+    destino.addEventListener('change',function(){scambio(destino);});
+    otro.addEventListener('input',function(){rcambio(otro);});
+}
+
+
+    /*
+    for(i=0; i<=255; i++){
+        var r= 1%2;
+        while(parseInt(r/2!=0)){
+            document.write();
+
+        }
+    }
+*/
+  
+
+    function scambio(destino){
+    document.getElementById("numeros").value=destino.value;
+    binario();
+    }
+
+
+    function rcambio(destino){
+        document.getElementById("snumeros").value=destino.value;
+        binario();
+    }
+
+    function binario(){
+        var n =document.getElementById("snumeros").value;
+        var cadena="";
+        while(n%2!=0){
+            cadena=(n%2)+cadena;
+            n= parseInt(n/2);
+        }
+        document.getElementById("dime").innerHTML=cadena;
+        
+    
+    }
+
+
+    window.addEventListener("load",function(){inicio();});
+</script>
+<div id="marco">
+<input type="range" id="numeros" min="0" max="255" value="0">
+<select id="snumeros"></select>
+</div>
+<p id="dime"></p>
+</body>
+</html>
