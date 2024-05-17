@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pasar a binario</title>
+    <title>calcular la mascara y la red</title>
 </head>
 <body>
 <script>
 
 
 function inicio(){
-    var destino = document.getElementById("snumeros");
-    var otro = document.getElementById("numeros");
+
+    for(let k=1; k<=4;k++){
+    var destino = document.getElementById("snumeros_"+k);
+    var otro = document.getElementById("numeros_"+k);
    
     for (let i=0; i<=255;i++){
         var op=document.createElement("option");
@@ -20,12 +22,14 @@ function inicio(){
         destino.appendChild(op);
         }
     destino.addEventListener('change',function(){scambio(destino);});
+    var otro = document.getElementById("numeros_"+k);
     otro.addEventListener('input',function(){rcambio(otro);});
 }
-
+}
 
     function scambio(destino){
-    document.getElementById("numeros").value=destino.value;
+    var n=(destino.id).substring((destino.id).indexOf('_')+1);
+    document.getElementById("numeros_"+n).value=destino.value;
     binario();
     }
 
@@ -52,9 +56,26 @@ function inicio(){
     window.addEventListener("load",function(){inicio();});
 </script>
 <div id="marco">
-<input type="range" id="numeros" min="0" max="255" value="0">
-<select id="snumeros"></select>
+<p>
+    <input type="range" id="numeros_1" min="0" max="255" value="0">
+    <select id="snumeros_1"></select><p id="pnumeros_1"></p>
+</p>
+
+<p>
+    <input type="range" id="numeros_2" min="0" max="255" value="0">
+    <select id="snumeros_2"></select><p id="pnumeros_2"></p>
+</p>
+
+<p>
+    <input type="range" id="numeros_3" min="0" max="255" value="0">
+    <select id="snumeros_3"></select><p id="pnumeros_3"></p>
+</p>
+
+<p>
+    <input type="range" id="numeros_4" min="0" max="255" value="0">
+    <select id="snumeros_4"></select><p id="pnumeros_4"></p>
+</p>
 </div>
-<p id="dime"></p>
+
 </body>
 </html>
