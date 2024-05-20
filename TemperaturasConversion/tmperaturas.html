@@ -12,30 +12,31 @@
         destino.addEventListener("input",function(){cambio();});
     } 
     function cambio(){
-        var can = getElementById("cantidad");
+        var can = document.getElementById("cantidad");
+        var c= parseFloat(can.value);
         var ele = document.getElementsByName("grados");
         for (i=0;i<ele.length;i++){
             if(ele[i].checked){
-            switch(i){
-                case 0:
+            switch(ele[i].value){
+                case "CF":
                 document.getElementById("marco").innerHTML=(1.8*can.value)+32;
                 break;
-                case 1:
+                case "FC":
                 document.getElementById("marco").innerHTML=(0.5*can.value)-32;
                     break;
-                case 2:
+                case "CK":
                 document.getElementById("marco").innerHTML=can.value+273.15;
                     break
 
-                case 3:
+                case "KC":
                 document.getElementById("marco").innerHTML=can.value-273.15;
                     break;
 
-                case 4:
+                case "KF":
                 document.getElementById("marco").innerHTML=((can.value-273.15)*1.8) + 32;
                 break;
 
-                case 5:
+                case "FK":
                 document.getElementById("marco").innerHTML=(can.value*0.5)+273.15;
                 break;
             }
@@ -45,7 +46,7 @@
     }
     window.addEventListener("load",()=>{inicio();})
 </script>
-    <input type="number" id="cantidad">grados</input>
+    <input type="number" id="cantidad">grados
     <fieldset>
         <legend>colores</legend>
         <input onchange="cambio()" type="radio" name="grados" value="CF">celsius a farenheight
