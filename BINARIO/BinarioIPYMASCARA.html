@@ -11,43 +11,42 @@
 
 function inicio(){
 
-    for(let k=1; k<=4;k++){
-    var destino = document.getElementById("snumeros_"+k);
-    var otro = document.getElementById("numeros_"+k);
-   
-    for (let i=0; i<=255;i++){
+    for(let k=1; k<=4;k++){//tenemos 4 select que sus id son snumeros_ del 1 al 4//
+    let destino = document.getElementById("snumeros_"+k);//obtenemos el elemento con la id//
+    for (let i=0; i<=255;i++){//creamos de 0 a 255 una las opciones de cada select//
         var op=document.createElement("option");
         op.value=i;
         op.text=i;
-        destino.appendChild(op);
+        destino.appendChild(op);//las metemos en el select//
         }
-    destino.addEventListener('change',function(){scambio(destino);});
-    var otro = document.getElementById("numeros_"+k);
-    otro.addEventListener('input',function(){rcambio(otro);});
+    destino.addEventListener('change',()=>{scambio(destino);});//le añadimos que cuano el select cambie nos llama a scambio que cambia el valor del rango//
+    let otro = document.getElementById("numeros_"+k);//otra variable que itera y obtiene el range por id//
+    otro.addEventListener('input',()=>{rcambio(otro);});//le añadimos evento de que cuando le introducimos valor al range llama a rcambio//
 }
 }
 
-    function scambio(destino){
+    function scambio(destino){//tenemos un elemento y le decimos que n es el numero de la id, esto se hace con un substring de la cadena original + indice +1 para conseguir el numero//
     var n=(destino.id).substring((destino.id).indexOf('_')+1);
-    document.getElementById("numeros_"+n).value=destino.value;
-    binario();
+    document.getElementById("numeros_"+n).value=destino.value;//obtenemos el elemento por id y le decimos que su value sera igual que a del destino aka el select//
+    binario(n);//llamamos a binario y pasamos el numerillo de la id//
     }
 
 
-    function rcambio(destino){
-        document.getElementById("snumeros").value=destino.value;
-        binario();
+    function rcambio(destino){//tenemos un elemento y le decimos que n es el numerillo de la id de ese elemento//
+        var n=(destino.id).substring((destino.id).indexOf('_')+1);
+        document.getElementById("snumeros_"+n).value=destino.value;//obtenemos el elemento por id y que su valor sera igual que el valor del  destino aka rango//
+        binario(n);//llamamos a binario y le pasamos n//
     }
 
-    function binario(){
-        var n =document.getElementById("snumeros").value;
+    function binario(a){
+        var n =document.getElementById("snumeros_"+a).value;//obtenemos el elemento//
         var cadena="";
         while(n!=0){//LOGICA DE PPASAR A BINARIO QUE DIVIDES HASTA QUE DE 0 EL COCIENTE//
             cadena=(n%2)+cadena;//SUMAMOS EL DIJITO//
             n= parseInt(n/2);//ACTUALIZAMOS//
         }
-        var n = 8-cadena.length; //esto es para que nos centre, le cojemos la longtitud y se la restamos a 8 porque es un octeto//
-        document.getElementById("dime").innerHTML='0'.repeat(n)+cadena; //insertamos la cadena de forma concatenada y repetimos 0 en el espacio que faltas//
+        var m = 8-cadena.length; //esto es para que nos centre, le cojemos la longtitud y se la restamos a 8 porque es un octeto//
+        document.getElementById("pnumeros_"+a).innerHTML='0'.repeat(m)+cadena; //insertamos la cadena de forma concatenada y repetimos 0 en el espacio que faltas//
         
     
     }
@@ -58,22 +57,22 @@ function inicio(){
 <div id="marco">
 <p>
     <input type="range" id="numeros_1" min="0" max="255" value="0">
-    <select id="snumeros_1"></select><p id="pnumeros_1"></p>
+    <select id="snumeros_1"></select><label id="pnumeros_1"></label>
 </p>
 
 <p>
     <input type="range" id="numeros_2" min="0" max="255" value="0">
-    <select id="snumeros_2"></select><p id="pnumeros_2"></p>
+    <select id="snumeros_2"></select><label id="pnumeros_2"></label>
 </p>
 
 <p>
     <input type="range" id="numeros_3" min="0" max="255" value="0">
-    <select id="snumeros_3"></select><p id="pnumeros_3"></p>
+    <select id="snumeros_3"></select><label id="pnumeros_3"></label>
 </p>
 
 <p>
     <input type="range" id="numeros_4" min="0" max="255" value="0">
-    <select id="snumeros_4"></select><p id="pnumeros_4"></p>
+    <select id="snumeros_4"></select><label id="pnumeros_4"></label>
 </p>
 </div>
 
