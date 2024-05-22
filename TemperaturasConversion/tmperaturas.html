@@ -6,85 +6,115 @@
     <title>Document</title>
     <style>
 
-        #marco{
-            border: 3px solid black;
-            width: 100px;
-            height: 50px;
-            margin: 20px 0px;
-            text-align: center;
-        }
+fieldset{
+        width: 250px;
+        margin:20px auto;
+        border:5px black ridge;
+        border-radius: 25px;
+        padding-left: 30px;
+        background-color: rgba(37, 149, 190, 0.614);
 
-        fieldset{
-            width: 500px;
-            height: 100px;
-            float: left;     
-            border: 5px gold ridge;
-           
-        }
+    }
+    legend{padding:10px;background-color: black;color:white;border-radius: 25px;}
+    input[type="radio"]{  margin:10px 0px;    }
 
-        #cantidad{
-            border: 3px solid black;
-            width: 200px;
-            height: 50px;    
-            text-align: center;
-        }
+    input[name=temperaturas]:checked +label{
+      background-color: rgb(109, 221, 208);color:white;
+      padding:3px;
+    }
+    input[type="number"]{ text-align: right;   }
+    #marco{
+      width: 350px;
+      margin:20px auto;
+      border:1px solid black;
+      padding:20px;
+      border:10px black ridge;
+      border-radius: 25px;
+    }
 
         
     </style>
 </head>
 <body>
 <script>
+
+    var temperaturas=["Celsius","Farenheight","Kelvin"];
+    FC=function(F){  return (5*(F-32)/9).toFixed(2);  }
+   FK=function(F){  return ((5*(F-32)/9)+273.15).toFixed(2); }
+   CF=function(C){  return ((9*C/5)+32).toFixed(2);   }
+   CK=function(C){  return (C+273.15).toFixed(2);   }
+   KC=function(K){  return (K-273.15).toFixed(2);   }
+   KF=function(K){  return ((9*(K-273.15)/5)+32).toFixed(2);   }
+   
+   
+   
     function inicio(){
-        var destino = document.getElementById("cantidad");
-        destino.addEventListener("input",function(){cambio();});
+        temperaturas.forEach((a)=>{
+            temperaturas.forEach((b)=>{
+                if(a!=b){
+                    let nombre=" "+a+" a "+b;
+                    let valor=a[0].toUpperCase()+b[0].toUpperCase();
+                    añadir(nombre,valor);
+                }
+            });
+        });
+        document.getElementById("temperatura").addEventListener("change",()=>{cambio();})
+        document.getElementByName("temperaturas")[0].checked=true;
+        cambio();
     } 
+
     function cambio(){
-        var can = document.getElementById("cantidad");
-        var ele = document.getElementsByName("grados");
-        for (i=0;i<ele.length;i++){
-            if(ele[i].checked){
-            switch(ele[i].value){
-                case "CF":
-                document.getElementById("marco").innerHTML=parseFloat((1.8*can.value)+32).toFixed(2);
-                break;
-                case "FC":
-                document.getElementById("marco").innerHTML=parseFloat((can.value-32)*(5/9)).toFixed(2);
-                    break;
-                case "CK":
-                  var n=parseFloat(can.value)+273.15;
-                document.getElementById("marco").innerHTML=n.toFixed(2);
-                break;
+        let valor = document.querySelector("input[name=temperaturas]:checked")?.value;
+      let numero=parseFloat(document.getElementById("temperatura").value);
+      //const ori = temperaturas.find((element) => element[0].toUpperCase()==valor[0].toUpperCase());
+      //const des = temperaturas.find((element) => element[0].toUpperCase()==valor[1].toUpperCase());
+      temperaturas.forEach( (a)=>{
+         if (a[0].toUpperCase()==valor[0].toUpperCase()) ori=a;
+         if (a[0].toUpperCase()==valor[1].toUpperCase()) des=a;
+      });
+         /*esto es que le decimos que en destina me escriba la siguiente ejecucion, me encuentras una funcion aka valor que se llame asi y le pasamos un parametro que es numero y luego concatenamos co mas texto*/
+         document.getElementById("origen").innerHTML=ori;
+         document.getElementById("destino").innerHTML=window[valor](numero)+" "+des;
 
-                case "KC":
-                document.getElementById("marco").innerHTML=parseFloat(can.value-273.15).toFixed(2);
-                    break;
 
-                case "KF":
-                document.getElementById("marco").innerHTML=parseFloat(((can.value-273.15)*1.8) + 32).toFixed(2);
-                break;
-
-                case "FK":
-                document.getElementById("marco").innerHTML=parseFloat((can.value-32)*(5/9)+273.15).toFixed(2);
-                break;
-            }
-
-        }
-        }
+       
     }
+
+    function añadir(nombre,valor){
+        let v=document.querySelector("fieldset");//apunta al unico fieldset//
+        const input=document.createElement('input');
+        input.type='radio';
+        input.value=valor;
+        input.name='temperaturas';
+        input.addEventListener("change",()=>{cambio();});
+
+        const label= document.createElement('label');
+        label.for=nombre;
+        label.textContent=nombre;
+        v.appendChild(input);
+        v.appendChild(label);
+        v.appendChild(document.createElement('br'));//añadimos un br directamente//
+    }
+
+
+
+
     window.addEventListener("load",()=>{inicio();})
 </script>
-    <input type="number" id="cantidad"> numero
-    <div id="marco"></div>
-    <fieldset>
-        <legend>Conversiones</legend>
-        <input onchange="cambio()" type="radio" name="grados" value="CF">celsius a farenheight
-        <input onchange="cambio()" type="radio" name="grados" value="FC">farenheight a celsius
-        <input onchange="cambio()" type="radio" name="grados" value="CK">celsius a kelvin
-        <input onchange="cambio()" type="radio" name="grados" value="KC">kelvin a celsius
-        <input onchange="cambio()" type="radio" name="grados" value="KF">kelvin a farenheight
-        <input onchange="cambio()" type="radio" name="grados" value="FK">farenheight a kelvin<br>
-        
-
-</fieldset>
+<div id="marco">
+    <p style="text-align:center">
+       <label for="Origen" id="origen"></label> 
+       <input type="number" id="temperatura"  value="0">
+    </p>
+    <p style="text-align:center">
+       <label for="Destino" id="destino">
+       </label></p>
+   <fieldset>
+      <legend>Conversión de Temperaturas</legend>
+ 
+      
+   
+ </fieldset>
+</div>
 </body>
 </html>

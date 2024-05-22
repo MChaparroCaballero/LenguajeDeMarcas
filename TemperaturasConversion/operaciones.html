@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>operaciones</title>
+    <style>
+        #marco{
+            width: 400px;
+            margin: 20px auto;
+            border: 5px gold ridge;
+            padding: 20px;
+        }
+
+    p{
+        text-align: center;
+    }
+    input[type="number"]{
+        text-align: right;
+    }
+
+    </style>
+    <script>
+
+    //las funciones que sus nombres concuerdan con sus values porque van a ser que tiene este value? pues es tambien esta funcion, dos en uno//
+    suma=function(a,b){return a+b}; 
+    resta=function(a,b){return a-b};
+    multiplicacion=function(a,b){return a*b};
+
+    function cambio(){//pasamos a enteros los valores de los input de numeros y obtenemos el valor del select de operaciones que te recuerdo que es el mismo nombre para las funciones//
+        let a =parseInt(document.getElementById("n1").value);
+        let b =parseInt(document.getElementById("n2").value);
+        let op= document.getElementById("operaciones").value;
+        document.getElementById("resultado").innerHTML=(window[op](a,b)).toString();//escribimos en el parrafo resultado lo que nos de de llamar a la funcion correspondiente al valor de operaciones, todo eso esta en op, y los parametros//
+
+    }
+
+    function inicio(){
+        document.getElementById("n1").addEventListener("change",()=>{cambio();})//les añadimos eventos para que cuando cambien hagan cosas, cuando cambie el primero numero//
+        document.getElementById("n2").addEventListener("change",()=>{cambio();})//cuando cambia el segundo numero//
+        document.getElementById("operaciones").addEventListener("change",()=>{cambio();})//cuando cambia el operador//
+    }
+
+    window.addEventListener("load",()=>{inicio();});
+    </script>
+</head>
+<body>
+    <div id="marco">
+    <p>
+        <label for="Numero1">numero 1</label>
+        <input type="number" id="n1" value="0">
+    </p>
+
+    <p>
+        <label for="Operacion">operacion</label>
+        <select id="operaciones">
+            <option value="suma">+</option>
+            <option value="resta">-</option>
+            <option value="multiplicacion">*</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="Numero2">numero 2</label>
+        <input type="number" id="n2" value="0">
+    </p>
+
+    <p id="resultado"><label for="resultado"></label></p>
+</div>
+</body>
+</html>

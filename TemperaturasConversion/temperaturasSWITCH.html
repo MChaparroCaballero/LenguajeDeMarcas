@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #marco{
+            border: 3px solid black;
+            width: 100px;
+            height: 50px;
+            margin: 20px 0px;
+            text-align: center;
+        }
+
+        fieldset{
+            width: 500px;
+            height: 100px;
+            float: left;     
+            border: 5px gold ridge;
+           
+        }
+
+        #cantidad{
+            border: 3px solid black;
+            width: 200px;
+            height: 50px;    
+            text-align: center;
+        }
+
+        
+    </style>
+</head>
+<body>
+<script>
+    function inicio(){
+        var destino = document.getElementById("cantidad");
+        destino.addEventListener("input",function(){cambio();});
+    } 
+    function cambio(){
+        var can = document.getElementById("cantidad");
+        var ele = document.getElementsByName("grados");
+        for (i=0;i<ele.length;i++){
+            if(ele[i].checked){
+            switch(ele[i].value){
+                case "CF":
+                document.getElementById("marco").innerHTML=parseFloat((1.8*can.value)+32).toFixed(2);
+                break;
+                case "FC":
+                document.getElementById("marco").innerHTML=parseFloat((can.value-32)*(5/9)).toFixed(2);
+                    break;
+                case "CK":
+                  var n=parseFloat(can.value)+273.15;
+                document.getElementById("marco").innerHTML=n.toFixed(2);
+                break;
+
+                case "KC":
+                document.getElementById("marco").innerHTML=parseFloat(can.value-273.15).toFixed(2);
+                    break;
+
+                case "KF":
+                document.getElementById("marco").innerHTML=parseFloat(((can.value-273.15)*1.8) + 32).toFixed(2);
+                break;
+
+                case "FK":
+                document.getElementById("marco").innerHTML=parseFloat((can.value-32)*(5/9)+273.15).toFixed(2);
+                break;
+            }
+
+        }
+        }
+    }
+    window.addEventListener("load",()=>{inicio();})
+</script>
+    <input type="number" id="cantidad"> numero
+    <div id="marco"></div>
+    <fieldset>
+        <legend>Conversiones</legend>
+        <input onchange="cambio()" type="radio" name="grados" value="CF">celsius a farenheight
+        <input onchange="cambio()" type="radio" name="grados" value="FC">farenheight a celsius
+        <input onchange="cambio()" type="radio" name="grados" value="CK">celsius a kelvin
+        <input onchange="cambio()" type="radio" name="grados" value="KC">kelvin a celsius
+        <input onchange="cambio()" type="radio" name="grados" value="KF">kelvin a farenheight
+        <input onchange="cambio()" type="radio" name="grados" value="FK">farenheight a kelvin<br>
+        
+
+</fieldset>
+</body>
+</html>
