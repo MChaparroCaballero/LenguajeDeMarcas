@@ -6,17 +6,24 @@
     <title>Document</title>
     <script>
     var activa=["1","2","3","4","5"];
-    
+    var botones=["principio","atras","adelante","final"];
 
-    for(){
-
-    }
+    principio=function(){ return document.getElementById("imagen").src="./numeros/numero_"+activa[0]+".png";}
+    final=function(){ return document.getElementById("imagen").src="./numeros/numero_"+activa[4]+".png";}
+    atras=function(){ return document.getElementById("imagen").src="./numeros/numero_"+((subString((document.getElementById("imagen").src).indexOf("_")+1))-1)+".png";}
+    adelante=function(){ return document.getElementById("imagen").src="./numeros/numero_"+((subString((document.getElementById("imagen").src).indexOf("_")+1))+1)+".png";}
+   
 function inicio(){
     var elem= document.createElement("img");
-}
-
-function cambio(){
-    elem.
+    elem.id=imagen;
+    elem.src="./numeros/numero_1.png";
+    botones.array.forEach(a => {
+        var boton=document.createElement("button");
+        boton.value=a;
+        boton.textContent=a;
+        botton.addEventListener("dblclick",function(){cambio();});
+    });
+ 
 }
 
 window.addEventListener("load",function(){inicio();});
