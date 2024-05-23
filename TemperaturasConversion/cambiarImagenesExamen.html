@@ -4,33 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #marco{text-align: center;
+        margin: 50px auto;}
+    </style>
     <script>
-    var activa=["1","2","3","4","5"];
+    var activa=[1,2,3,4,5];
     var botones=["principio","atras","adelante","final"];
 
-    principio=function(){ return document.getElementById("imagen").src="./numeros/numero_"+activa[0]+".png";}
-    final=function(){ return document.getElementById("imagen").src="./numeros/numero_"+activa[4]+".png";}
-    atras=function(){ return document.getElementById("imagen").src="./numeros/numero_"+((subString((document.getElementById("imagen").src).indexOf("_")+1))-1)+".png";}
-    adelante=function(){ return document.getElementById("imagen").src="./numeros/numero_"+((subString((document.getElementById("imagen").src).indexOf("_")+1))+1)+".png";}
+    principio=function(){ var m=document.getElementById("imagen");
+        return m.src="./numeros/numero_"+activa[0]+".png";}
+    final=function(){
+        var m=document.getElementById("imagen");
+         return m.src="./numeros/numero_"+activa[4]+".png";}
+    atras=function(){ 
+        var m=document.getElementById("imagen");
+        var rutai = m.src;
+        let start = parseInt(rutai.lastIndexOf("_") + 1); // Encontrar el índice después del "_"
+        let end = rutai.lastIndexOf(".png"); 
+
+
+        for(let i=0;i<=activa.length;i++){
+        if (activa[i] == start) {
+        position = i;
+        return m.src="./numeros/numero_"+activa[i]+".png";
+        }
+        }
+        };
+
+    adelante=function(){ var m=document.getElementById("imagen");
+    var index = subString(m.src,indexOf("_")+1);
+        return m.src="./numeros/numero_"+((subString((document.getElementById("imagen").src).indexOf("_")+1))+1)+".png";}
    
 function inicio(){
+    var destino= document.getElementById("marco");
     var elem= document.createElement("img");
-    elem.id=imagen;
+    elem.id="imagen";
     elem.src="./numeros/numero_1.png";
-    botones.array.forEach(a => {
-        var boton=document.createElement("button");
-        boton.value=a;
-        boton.textContent=a;
-        botton.addEventListener("dblclick",function(){cambio();});
-    });
+
+    var boton1=document.createElement("button");
+    var boton2=document.createElement("button");
+    var boton3=document.createElement("button");
+    var boton4=document.createElement("button");
+
+        boton1.value=principio;
+        boton1.textContent="|<<";
+
+        boton2.value=atras;
+        boton2.textContent="<<";
+
+        boton3.value=adelante;
+        boton3.textContent=">>";
+
+        boton4.value=final;
+        boton4.textContent=">>|";
+        botton1.addEventListener("dblclick",function(){cambio(boton1.value);});
+        botton2.addEventListener("dblclick",function(){cambio(boton2.value);});
+        botton3.addEventListener("dblclick",function(){cambio(boton3.value);});
+        botton4.addEventListener("dblclick",function(){cambio(boton4.value);});
+   
+    for(let i =1;i<=4;i++){
+        destino.appendChild(boton+i);
+    }
+
+    destino.appendChild(elem);
  
 }
 
-window.addEventListener("load",function(){inicio();});
+function cambio(valor){
+    document.getElementById("imagen").src="./numeros/numero_"+window[valor]+".png";
+
+}
+
+window.addEventListener("load",()=>{inicio();});
     </script>
 </head>
 
 <body>
-    <div id="marco"></div>;
+    
+    <div id="marco">
+        <img src="./numeros/numero_1.png" id="imagen">
+        <div id="botones">
+            <button id="first" value="first" onclick="principio()">|<<</button>
+            <button id="prev" value="prev" onclick="atras()"><<</button>
+            <button id="next" value="next" onclick="adelante()">>></button>
+            <button id="last" value="last"  onclick="final()">>>|</button>
+        </div>
+    </div>
 </body>
 </html>
