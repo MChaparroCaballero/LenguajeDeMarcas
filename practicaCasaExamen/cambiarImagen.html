@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #marco{text-align: center;
+        margin: 50px auto;}
+
+
+        #contenedor{
+            margin: 20px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var imagens =["./img/alien.jpg","./img/mapache.jpg","./img/parajaro.jpg","./img/timon.jpg"];
+        var ori=0;
+        function principio(){
+            var des=document.getElementById("imagen");
+            des.src=imagens[0];
+            ori=0;
+        }
+
+        function adelante(){
+            var des=document.getElementById("imagen");
+            if(ori==3){
+                des.src=imagens[0];
+                ori=0;
+            }else{
+            des.src=imagens[ori+1];
+            ori=ori+1;
+        }
+        }
+
+        function atras(){
+            var des=document.getElementById("imagen");
+            if(ori==0){
+                des.src=imagens[3];
+                ori=3;
+            }else{
+            des.src=imagens[ori-1];
+            ori=ori-1;   
+            }
+            
+        }
+
+
+        function final(){
+            var des=document.getElementById("imagen");
+            des.src=imagens[3];
+            ori=3;
+        }
+
+    </script>
+    <div id="contenedor">
+        <img src="./img/alien.jpg" id="imagen" height="200px" width="300px">
+        <div id="botones">
+            <button id="first" value="first" onclick="principio()">|<<</button>
+            <button id="prev" value="prev" onclick="atras()"><<</button>
+            <button id="next" value="next" onclick="adelante()">>></button>
+            <button id="last" value="last"  onclick="final()">>>|</button>
+        </div>
+    </div>
+</body>
+</html>
