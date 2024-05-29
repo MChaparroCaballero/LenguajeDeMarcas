@@ -9,71 +9,39 @@
         margin: 50px auto;}
     </style>
     <script>
-    var activa=[1,2,3,4,5];
-    var botones=["principio","atras","adelante","final"];
+    
+    var activa=["./numeros/numero_1.png","./numeros/numero_2.png","./numeros/numero_3.png","./numeros/numero_4.png","./numeros/numero_5.png"];
+    var ori=0;
 
     principio=function(){ var m=document.getElementById("imagen");
-        return m.src="./numeros/numero_"+activa[0]+".png";}
+    ori=0;
+        return m.src=activa[ori];}
     final=function(){
         var m=document.getElementById("imagen");
-         return m.src="./numeros/numero_"+activa[4]+".png";}
+        ori=activa.length-1;
+         return m.src=activa[ori];}
+
     atras=function(){ 
         var m=document.getElementById("imagen");
-        var rutai = m.src;
-        let start = parseInt(rutai.lastIndexOf("_") + 1); // Encontrar el índice después del "_"
-        let end = rutai.lastIndexOf(".png"); 
-
-
-        for(let i=0;i<=activa.length;i++){
-        if (activa[i] == start) {
-        position = i;
-        return m.src="./numeros/numero_"+activa[i]+".png";
-        }
-        }
+        if (ori > 0) {
+                ori--;
+               return m.src=activa[ori];
+            }
         };
 
     adelante=function(){ var m=document.getElementById("imagen");
-    var index = subString(m.src,indexOf("_")+1);
-        return m.src="./numeros/numero_"+((subString((document.getElementById("imagen").src).indexOf("_")+1))+1)+".png";}
+    if (ori < activa.length-1) {
+                ori++;
+              return  m.src=activa[ori];
+            }
+        }
    
 function inicio(){
-    var destino= document.getElementById("marco");
-    var elem= document.createElement("img");
-    elem.id="imagen";
-    elem.src="./numeros/numero_1.png";
-
-    var boton1=document.createElement("button");
-    var boton2=document.createElement("button");
-    var boton3=document.createElement("button");
-    var boton4=document.createElement("button");
-
-        boton1.value=principio;
-        boton1.textContent="|<<";
-
-        boton2.value=atras;
-        boton2.textContent="<<";
-
-        boton3.value=adelante;
-        boton3.textContent=">>";
-
-        boton4.value=final;
-        boton4.textContent=">>|";
-        botton1.addEventListener("dblclick",function(){cambio(boton1.value);});
-        botton2.addEventListener("dblclick",function(){cambio(boton2.value);});
-        botton3.addEventListener("dblclick",function(){cambio(boton3.value);});
-        botton4.addEventListener("dblclick",function(){cambio(boton4.value);});
-   
-    for(let i =1;i<=4;i++){
-        destino.appendChild(boton+i);
-    }
-
-    destino.appendChild(elem);
- 
-}
-
-function cambio(valor){
+    
     document.getElementById("imagen").src="./numeros/numero_"+window[valor]+".png";
 
+    
+ 
 }
 
 window.addEventListener("load",()=>{inicio();});
