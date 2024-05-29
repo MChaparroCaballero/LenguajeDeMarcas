@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<body>
+
+   <script>
+    function cambior(){
+    var rango =document.getElementById("r1");
+    var select=document.getElementById("s1");
+    rango.value=select.value
+    }
+
+    function cambios(){
+    var rango =document.getElementById("r1");
+    var select=document.getElementById("s1");
+    select.value=rango.value;
+}
+   </script> 
+    <input type="range" value="0" max="5" min="0" id="r1" oninput="cambios()">
+    <select name="1" id="s1" value="1" onchange="cambior()">
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+</body>
+</html>

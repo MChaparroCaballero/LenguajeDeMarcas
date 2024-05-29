@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var semana=["LUNES","MARTES","MIERCOLES","JUEVES","VIERNES","SABADO","DOMINGO"]
+        var des=document.getElementById("marco");
+        var fecha = new Date();
+        var dia=fecha.getDay();
+        var mes=fecha.getMonth();
+        var años=fecha.getFullYear();
+        var hora=fecha.getHours();
+        var min=fecha.getMinutes();
+        var numero=fecha.getUTCDate();
+        
+        document.write(semana[dia-1]+" "+numero+" "+(mes+1)+" "+años+" "+hora+" "+min);
+    </script>
+    <div id="marco"></div>
+</body>
+</html>
